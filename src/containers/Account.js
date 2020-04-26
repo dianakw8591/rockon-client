@@ -1,7 +1,8 @@
 import React from 'react';
+import AuthHOC from '../HOCs/authHOC'
 
 
-export default function Dashboard(props) {
+function Account(props) {  
 
   return (
     <div>
@@ -9,3 +10,5 @@ export default function Dashboard(props) {
     </div>      
   )
 }
+
+export default AuthHOC(Account)

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Nav, Navbar, NavItem, Button, NavDropdown } from "react-bootstrap"
+import React from 'react'
+import { Navbar, Button, NavDropdown } from "react-bootstrap"
 import { Link, NavLink } from "react-router-dom"
 import { LinkContainer } from "react-router-bootstrap"
 
@@ -25,13 +25,6 @@ export default function NavBar(props) {
         <Button variant="outline-primary" className="mr-sm-2" onClick={switchForm}> {signupForm ? 'Log In' : 'Sign Up'}</Button>
       }
 
-
-      {/* <Nav pullRight>
-        
-        <LinkContainer to="/login">
-        <NavItem>Login</NavItem>
-        </LinkContainer>
-      </Nav> */}
       {/* <Form inline>
       <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       <Button variant="outline-primary">Search</Button>

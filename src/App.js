@@ -53,7 +53,7 @@ class App extends React.Component {
             {this.state.authUser ? <Redirect to="/dashboard" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
           </Route>
           <Route exact path='/dashboard' render={(props) => <Dashboard {...props} />} />
-          <Route exact path='/account' render={(props) => <Account {...props} />} />
+          <Route exact path='/account' render={(props) => <Account {...props} />} authUser={this.state.authUser}/>
           <Route exact path='/logbook' render={(props) => <Log {...props} />} />
         </Router>
       </div>
