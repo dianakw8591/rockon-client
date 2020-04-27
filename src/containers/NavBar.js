@@ -9,9 +9,9 @@ export default function NavBar(props) {
   return (
     <Navbar bg="light" variant="light">
       <Navbar.Brand>
-        {authUser ? <Link to="/dashboard"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
+        {authUser.id ? <Link to="/dashboard"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
       </Navbar.Brand>
-      {authUser ? (
+      {authUser.id ? (
         <>
           <LinkContainer to="/logbook">
             <Button variant="outline-primary" className="mr-sm-2"> Log a Climb </Button>

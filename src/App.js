@@ -10,17 +10,21 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
   state = {
+    loading: true,
     signupForm: true,
-    authUser: null,
+    authUser: {},
   }
 
   componentDidMount() {
     const token = localStorage.getItem("token");
     if (token) {
-      api.auth.getCurrentUser().then(user => {
-        this.setState({ authUser: user.user });
+      api.auth.getCurrentUser().then(resp => {
+        if (!resp.error) {
+          this.setState({ authUser: resp.user });
+        }
       });
     }
+    this.setState({ loading: false });
   }
 
   switchForm = () => {
@@ -38,26 +42,36 @@ class App extends React.Component {
 
   logout = () => {
     localStorage.removeItem("token");
-    this.setState({ 
-      authUser: null, 
+    this.setState({
+      authUser: {},
     });
   };
 
+  updateUser = data => {
+    this.setState({
+      authUser: data.user,
+    })
+  }
+
   render() {
-    return (
-      <div>
-        <Router>
-          <NavBar switchForm={this.switchForm} signupForm={this.state.signupForm} handleLogout={this.logout} authUser={this.state.authUser} />
-          {/* <Route exact path='/' render={(props) => <Landing {...props} signupForm={this.state.signupForm} onLogin={this.login} />} /> */}
-          <Route exact path="/">
-            {this.state.authUser ? <Redirect to="/dashboard" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
-          </Route>
-          <Route exact path='/dashboard' render={(props) => <Dashboard {...props} />} />
-          <Route exact path='/account' render={(props) => <Account {...props} />} authUser={this.state.authUser}/>
-          <Route exact path='/logbook' render={(props) => <Log {...props} />} />
-        </Router>
-      </div>
-    )
+    if (this.state.loading) {
+      return <div><h2>Loading...</h2></div>
+    } else {
+      return (
+        <div>
+          <Router>
+            <NavBar switchForm={this.switchForm} signupForm={this.state.signupForm} handleLogout={this.logout} authUser={this.state.authUser} />
+            {/* <Route exact path='/' render={(props) => <Landing {...props} signupForm={this.state.signupForm} onLogin={this.login} />} /> */}
+            <Route exact path="/">
+              {this.state.authUser.id ? <Redirect to="/dashboard" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
+            </Route>
+            <Route exact path='/dashboard' render={(props) => <Dashboard {...props} authUser={this.state.authUser} />} />
+            <Route exact path='/account' render={(props) => <Account {...props} authUser={this.state.authUser} onUpdateUser={this.updateUser} handleLogout={this.logout} />} />
+            <Route exact path='/logbook' render={(props) => <Log {...props} />} />
+          </Router>
+        </div>
+      )
+    }
   }
 }
 export default App;
