@@ -1,5 +1,4 @@
 import React from 'react';
-import AuthHOC from '../HOCs/authHOC'
 
 
 function Logbook(props) {
@@ -11,4 +10,4 @@ function Logbook(props) {
   )
 }
 
-export default AuthHOC(Logbook)
+export default Logbook

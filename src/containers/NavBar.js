@@ -13,7 +13,7 @@ export default function NavBar(props) {
       </Navbar.Brand>
       {authUser.id ? (
         <>
-          <LinkContainer to="/logbook">
+          <LinkContainer to="/dashboard/log">
             <Button variant="outline-primary" className="mr-sm-2"> Log a Climb </Button>
           </LinkContainer>
           <NavDropdown title={authUser.username} >

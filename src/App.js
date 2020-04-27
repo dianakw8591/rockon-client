@@ -4,7 +4,6 @@ import NavBar from './containers/NavBar';
 import Landing from './containers/Landing';
 import Dashboard from './containers/Dashboard';
 import Account from './containers/Account';
-import Log from './containers/Log';
 import { api } from './services/api';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
@@ -65,9 +64,8 @@ class App extends React.Component {
             <Route exact path="/">
               {this.state.authUser.id ? <Redirect to="/dashboard" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
             </Route>
-            <Route exact path='/dashboard' render={(props) => <Dashboard {...props} authUser={this.state.authUser} />} />
+            <Route path='/dashboard' render={(props) => <Dashboard {...props} authUser={this.state.authUser} />} />
             <Route exact path='/account' render={(props) => <Account {...props} authUser={this.state.authUser} onUpdateUser={this.updateUser} handleLogout={this.logout} />} />
-            <Route exact path='/logbook' render={(props) => <Log {...props} />} />
           </Router>
         </div>
       )
