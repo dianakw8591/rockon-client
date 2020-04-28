@@ -111,6 +111,7 @@ class Logform extends Component {
                 <Form.Control
                   as="select"
                   name="style"
+                  value={this.state.fields.style}
                   onChange={event => this.handleChange(event)}>
                   <option>Select a style</option>
                   {this.createOptions(this.styles)}
@@ -123,6 +124,7 @@ class Logform extends Component {
                 <Form.Control
                   as="select"
                   name='outcome'
+                  value={this.state.fields.outcome}
                   onChange={event => this.handleChange(event)}>
                   <option>Select an outcome</option>
                   {this.createOptions(this.outcomes)}

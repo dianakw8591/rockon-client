@@ -20,7 +20,6 @@ function Dashboard(props) {
   }, [authUser.id])
 
   const addEntry = (entry) => {
-    console.log(entry)
     setEntries([entry, ...entries])
   }
 

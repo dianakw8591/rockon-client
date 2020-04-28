@@ -27,10 +27,10 @@ function RouteSelecter(props) {
   return (
     <div>
       <Container>
-        <Form.Label>Search for a climb by name:</Form.Label>
-        <br />
-        <br />
         <Form onSubmit={handleSubmit}>
+          <Form.Label>Search for a climb by name:</Form.Label>
+          <br />
+          <br />
           <Form.Group as={Row}>
             <Form.Label column sm="2">Route:</Form.Label>
             <Col sm="8">
