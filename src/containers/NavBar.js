@@ -7,7 +7,7 @@ export default function NavBar(props) {
   const { authUser, signupForm, switchForm, handleLogout } = props;
 
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar bg="light" variant="light" className="justify-content-between">
       <Navbar.Brand>
         {authUser.id ? <Link to="/dashboard"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
       </Navbar.Brand>

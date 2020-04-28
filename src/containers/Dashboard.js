@@ -29,10 +29,9 @@ function Dashboard(props) {
 
   return (
     <div>
-      <h1>Dashboard</h1>
       { loading ? <div><h2>Loading...</h2></div> : 
       <>
-      <Link to='/dashboard/log'>Logbook</Link>
+      {/* <Link to='/dashboard/log'>Logbook</Link> */}
       <Route exact path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} entries={sortByDate()} />}/>
       </>}
     </div>

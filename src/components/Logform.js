@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, ListGroup, Jumbotron } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import { api } from '../services/api';
 import '../App.css';
@@ -66,26 +66,28 @@ class Logform extends Component {
   }
 
   outcomes = ['Onsight', 'Flash', 'Tronsight', 'Pinkpoint', 'Redpoint', 'No Falls', 'Repeat', 'Attempt'];
+  boulder_outcomes = ['Flash', 'Redpoint', 'Repeat', 'Attempt'];
   styles = ['Lead', 'Swap Leads', 'Follow', 'Toprope', 'Solo'];
 
   render() {
-    const { name, full_type, rating, pitches } = this.props.climb;
+    const { name, full_type, rating, pitches, key_type } = this.props.climb;
 
     return (
-      <div>
-        <Container>
-          <div>
-            <h6>{name}</h6>
-            {this.area()}<br />
-            {full_type + ' ' + rating + ' pitches: ' + pitches}
-          </div><br />
-          <Form.Label>Log your climb:</Form.Label>
-          <br />
-          <br />
+      <>
+        <ListGroup.Item variant='dark'>
+          <h6>{name}</h6>
+          {this.area()}<br />
+          {full_type + ' ' + rating + (key_type !== "Boulder" ? (' pitches: ' + pitches) : '')}
+        </ListGroup.Item>
+        <br />
+        <br />
+        <Jumbotron>
+
           <Form onSubmit={this.handleSubmit}>
+            <Form.Label>Log your climb:</Form.Label>
             <Form.Group as={Row}>
-              <Form.Label column sm="3">Date:</Form.Label>
-              <Col sm="9">
+              <Form.Label column sm="2">Date:</Form.Label>
+              <Col sm="4">
                 <DatePicker
                   name='start_date'
                   onChange={this.handleDateChange}
@@ -93,46 +95,45 @@ class Logform extends Component {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row}></Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column sm="3">Pitches:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  type="number"
-                  name="pitches"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.pitches}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Style:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  as="select"
-                  name="style"
-                  value={this.state.fields.style}
-                  onChange={event => this.handleChange(event)}>
-                  <option>Select a style</option>
-                  {this.createOptions(this.styles)}
-                </Form.Control>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Outcome:</Form.Label>
-              <Col sm="9">
+              {key_type !== "Boulder" ?
+                <>
+                  <Form.Label column sm="1">Pitches:</Form.Label>
+                  <Col sm="1">
+                    <Form.Control
+                      type="number"
+                      name="pitches"
+                      onChange={event => this.handleChange(event)}
+                      value={this.state.fields.pitches}
+                    />
+                  </Col>
+                  <Form.Label column sm="1">Style:</Form.Label>
+                  <Col sm="2">
+                    <Form.Control
+                      as="select"
+                      name="style"
+                      value={this.state.fields.style}
+                      onChange={event => this.handleChange(event)}>
+                      <option>Select a style</option>
+                      {this.createOptions(this.styles)}
+                    </Form.Control>
+                  </Col>
+                </>
+                : <></>}
+              <Form.Label column sm="1">Outcome:</Form.Label>
+              <Col sm="2">
                 <Form.Control
                   as="select"
                   name='outcome'
                   value={this.state.fields.outcome}
                   onChange={event => this.handleChange(event)}>
                   <option>Select an outcome</option>
-                  {this.createOptions(this.outcomes)}
+                  {key_type !== "Boulder" ? this.createOptions(this.outcomes) : this.createOptions(this.boulder_outcomes)}
                 </Form.Control>
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column sm="3">Partners:</Form.Label>
+              <Form.Label column sm="2">Partners:</Form.Label>
               <Col sm="9">
                 <Form.Control
                   type="text"
@@ -142,19 +143,21 @@ class Logform extends Component {
                 />
               </Col>
             </Form.Group>
+            {key_type !== "Boulder" ?
+              <Form.Group as={Row}>
+                <Form.Label column sm="2">Rack:</Form.Label>
+                <Col sm="9">
+                  <Form.Control
+                    type="text"
+                    name="rack"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.rack}
+                  />
+                </Col>
+              </Form.Group>
+              : <></>}
             <Form.Group as={Row}>
-              <Form.Label column sm="3">Rack:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  type="text"
-                  name="rack"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.rack}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Beta:</Form.Label>
+              <Form.Label column sm="2">Beta:</Form.Label>
               <Col sm="9">
                 <Form.Control
                   as='textarea'
@@ -165,7 +168,7 @@ class Logform extends Component {
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
-              <Form.Label column sm="3">Notes:</Form.Label>
+              <Form.Label column sm="2">Notes:</Form.Label>
               <Col sm="9">
                 <Form.Control
                   as='textarea'
@@ -182,8 +185,8 @@ class Logform extends Component {
               </Button>
             </Form.Group>
           </Form>
-        </Container>
-      </div>
+        </Jumbotron>
+      </>
     )
   }
 }

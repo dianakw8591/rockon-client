@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { ListGroup, Button, Form, Row, Col } from 'react-bootstrap';
 import { api } from '../services/api';
 import SelectClimb from './SelectClimb';
 
@@ -13,6 +13,7 @@ function RouteSelecter(props) {
     e.preventDefault();
     api.climb.searchClimbs(search)
       .then(data => {
+        props.onSearch();
         setClimbs(data.climbs);
         setResults(true);
         setSearch("");
@@ -25,40 +26,40 @@ function RouteSelecter(props) {
   }
 
   return (
-    <div>
-      <Container>
-        <Form onSubmit={handleSubmit}>
-          <Form.Label>Search for a climb by name:</Form.Label>
-          <br />
-          <br />
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">Route:</Form.Label>
-            <Col sm="8">
-              <Form.Control
-                type="text"
-                name="name"
-                placeholder="Try 'nose'..."
-                onChange={(event) => setSearch(event.target.value)}
-                value={search}
-              />
-            </Col>
-            <Button variant="secondary" type="submit" column='true' >
-              Search
+    <>
+      <Form onSubmit={handleSubmit}>
+        <Form.Label>Search for a climb by name:</Form.Label>
+        <br />
+        <br />
+        <Form.Group as={Row}>
+          <Form.Label column sm="2">Route:</Form.Label>
+          <Col sm="8">
+            <Form.Control
+              type="text"
+              name="name"
+              placeholder="Try 'nose'..."
+              onChange={(event) => setSearch(event.target.value)}
+              value={search}
+            />
+          </Col>
+          <Button variant="secondary" type="submit" column='true' >
+            Search
           </Button>
-          </Form.Group>
-        </Form>
-      </Container>
+        </Form.Group>
+      </Form>
       <div>
         {results ?
           (climbs.length === 0 ?
             <h4>No results found. Please try again.</h4> :
             <div>
               <h5>Select a climb:</h5>
-              {climbs.map(climb => <SelectClimb key={climb.id} climb={climb} onSelectRoute={selectRoute} />)}
+              <ListGroup variant="flush">
+                {climbs.map(climb => <SelectClimb key={climb.id} climb={climb} onSelectRoute={selectRoute} />)}
+              </ListGroup>
             </div>) :
           null}
       </div>
-    </div>
+    </>
   )
 }
 
