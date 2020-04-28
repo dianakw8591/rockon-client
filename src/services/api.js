@@ -49,6 +49,28 @@ const deleteUser = user_id => {
   }).then(resp => resp.json());
 };
 
+const searchClimbs = (route) => {
+  const url = new URL(`${API_ROOT}/climbs`);
+  url.searchParams.append("q", route);
+  return fetch(url, {
+    headers: headers(),
+  }).then(resp => resp.json());
+};
+
+const addEntry = (entry, user_id) => {
+  return fetch(`${API_ROOT}/users/${user_id}/user_climbs`, {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify(entry)
+  }).then(resp => resp.json());
+};
+
+const getEntries = (user_id) => {
+  return fetch(`${API_ROOT}/users/${user_id}/user_climbs`, {
+    headers: headers(),
+  }).then(resp => resp.json());
+};
+     
 export const api = {
   auth: {
     login,
@@ -59,4 +81,11 @@ export const api = {
     updateUser,
     deleteUser,
   },
+  climb: {
+    searchClimbs,
+  },
+  entry: {
+    getEntries,
+    addEntry,
+  }
 };
