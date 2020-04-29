@@ -32,8 +32,9 @@ function Logbook(props) {
       <Container fluid="xl">
       <RouteSelecter onSelectRoute={selectRoute} onSearch={search} />
       {showForm ? <Logform climb={climb} id={id} onSubmit={handleSubmit}/> : null}
-      {success ? <h4>Entry logged!</h4> : null}
+      {success ? <div>Entry logged!</div> : null}
       {/* <Route exact path='dashboard/log/new' render={<Logform climb={climb} id={id} onAddEntry={onAddEntry}/>}/> */}
+      <h4>Your logbook:</h4>
         {entries.map(entry => <LogEntry key={entry.id} entry={entry} />)}
       </Container>
     </div>

@@ -98,19 +98,21 @@ function Stats(props) {
           </Col>
         </Form.Group>
         <Form.Group as={Row} controlId="style" >
-          <Form.Label column >Select styles:</Form.Label>
-          <div key={`inline-checkbox`} className="mb-3">
-            {Object.keys(keytype).map(key => (
-              <Form.Check inline
-                type="checkbox"
-                onChange={handleTypeToggle}
-                label={key}
-                key={key}
-                name={key}
-                checked={keytype[key]}
-              />
-            ))}
-          </div>
+          <Form.Label column sm='2'>Select styles:</Form.Label>
+          <Col>
+            <div key={`inline-checkbox`} className="mb-3">
+              {Object.keys(keytype).map(key => (
+                <Form.Check inline
+                  type="checkbox"
+                  onChange={handleTypeToggle}
+                  label={key}
+                  key={key}
+                  name={key}
+                  checked={keytype[key]}
+                />
+              ))}
+            </div>
+          </Col>
         </Form.Group>
       </Form>
     </Container>
