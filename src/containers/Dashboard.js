@@ -1,8 +1,9 @@
 import React, {useState, useEffect } from 'react';
 import AuthHOC from '../HOCs/authHOC';
-import { Link, Route} from "react-router-dom";
+import { Route} from "react-router-dom";
 import { api } from '../services/api';
 import Logbook from './Logbook';
+import Stats from '../components/Stats';
 
 
 function Dashboard(props) {
@@ -31,8 +32,9 @@ function Dashboard(props) {
     <div>
       { loading ? <div><h2>Loading...</h2></div> : 
       <>
-      {/* <Link to='/dashboard/log'>Logbook</Link> */}
-      <Route exact path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} entries={sortByDate()} />}/>
+      {/* {entries.length > 0 ? <Stats entries={sortByDate()}/> : <h1>Get started by adding climbs to your logbook</h1> } */}
+      <Route exact path={'/dashboard/stats'} render={(props) => <Stats entries={sortByDate()}/>} />
+      <Route path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} entries={sortByDate()} />}/>
       </>}
     </div>
       

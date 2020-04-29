@@ -9,7 +9,7 @@ export default function NavBar(props) {
   return (
     <Navbar bg="light" variant="light" className="justify-content-between">
       <Navbar.Brand>
-        {authUser.id ? <Link to="/dashboard"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
+        {authUser.id ? <Link to="/dashboard/stats"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
       </Navbar.Brand>
       {authUser.id ? (
         <>

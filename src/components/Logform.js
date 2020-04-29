@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Form, Row, Col, ListGroup, Jumbotron } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
+import * as moment from 'moment';
 import { api } from '../services/api';
 import '../App.css';
 
@@ -32,28 +33,28 @@ class Logform extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const entry = { entry: { ...this.state.fields, climb_id: this.props.climb.id } };
+    const entry = { entry: { ...this.state.fields, start_date: moment(this.state.fields.start_date).format('YYYY-MM-DD'), climb_id: this.props.climb.id } };
     api.entry.addEntry(entry, this.props.id).then(resp => {
       if (!resp.error) {
-        this.props.onAddEntry(resp);
         this.setState({ error: false })
+        this.props.onSubmit(resp);   
       } else {
         this.setState({
           error: resp.error,
         })
       }
-      this.setState({
-        fields: {
-          ...this.state.fields,
-          style: '',
-          led_pitches: '',
-          outcome: '',
-          partners: '',
-          rack: '',
-          beta: '',
-          notes: '',
-        }
-      })
+      // this.setState({
+      //   fields: {
+      //     ...this.state.fields,
+      //     style: '',
+      //     led_pitches: '',
+      //     outcome: '',
+      //     partners: '',
+      //     rack: '',
+      //     beta: '',
+      //     notes: '',
+      //   }
+      // })
     });
   };
 

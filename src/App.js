@@ -62,7 +62,7 @@ class App extends React.Component {
             <NavBar switchForm={this.switchForm} signupForm={this.state.signupForm} handleLogout={this.logout} authUser={this.state.authUser} />
             {/* <Route exact path='/' render={(props) => <Landing {...props} signupForm={this.state.signupForm} onLogin={this.login} />} /> */}
             <Route exact path="/">
-              {this.state.authUser.id ? <Redirect to="/dashboard" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
+              {this.state.authUser.id ? <Redirect to="/dashboard/stats" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
             </Route>
             <Route path='/dashboard' render={(props) => <Dashboard {...props} authUser={this.state.authUser} />} />
             <Route exact path='/account' render={(props) => <Account {...props} authUser={this.state.authUser} onUpdateUser={this.updateUser} handleLogout={this.logout} />} />

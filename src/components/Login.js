@@ -36,7 +36,7 @@ class Login extends Component {
       api.auth.login(user).then(resp => {
         if (!resp.error) {
           this.props.onLogin(resp);
-          this.props.history.push('/dashboard');
+          this.props.history.push('/dashboard/stats');
         } else {
           this.setState({
             error: resp.error,
@@ -92,7 +92,7 @@ class Login extends Component {
               </Col>
             </Form.Group>
             {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Button variant="secondary" type="submit" block>
+            <Button variant="secondary" type="submit" >
               Log in
           </Button>
           </Form>

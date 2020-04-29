@@ -50,7 +50,7 @@ class Signup extends Component {
         api.user.newUser(user).then(resp => {
           if (!resp.error) {
             this.props.onSignin(resp);
-            this.props.history.push('/dashboard');
+            this.props.history.push('/dashboard/stats');
           } else {
             this.setState({
               error: resp.error,
@@ -176,7 +176,7 @@ class Signup extends Component {
             </Form.Group>
             {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
             <Form.Group as={Row}>
-              <Button variant="secondary" type="submit" block>
+              <Button variant="secondary" type="submit" >
                 Create account
               </Button>
             </Form.Group>
