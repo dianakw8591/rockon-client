@@ -70,6 +70,13 @@ const getEntries = (user_id) => {
     headers: headers(),
   }).then(resp => resp.json());
 };
+
+const deleteEntry = (entry_id, user_id) => {
+  return fetch(`${API_ROOT}/users/${user_id}/user_climbs/${entry_id}`, {
+    method: "DELETE",
+    headers: headers(),
+  }).then(resp => resp.json());
+}
      
 export const api = {
   auth: {
@@ -87,5 +94,6 @@ export const api = {
   entry: {
     getEntries,
     addEntry,
+    deleteEntry,
   }
 };

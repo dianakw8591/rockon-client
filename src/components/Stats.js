@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Card, Container, Row, Col, Form } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import * as moment from 'moment';
+import Graph from './Graph';
 
 function Stats(props) {
   const { entries } = props;
@@ -44,6 +45,8 @@ function Stats(props) {
     .filter(e => moment(e.start_date) <= moment(end))
     .filter(e => typeArray.includes(e.climb.key_type))
 
+  
+
   // functions to display data
   const totalDays = (log) => {
     let hash = {};
@@ -67,9 +70,9 @@ function Stats(props) {
     return sum;
   }
 
-
-  return (
+  return (  entries.length > 0 ? 
     <Container fluid="xl">
+    <Graph entries={filtered}/>
       <Card>
         <Row>
           <Col>Total climbs: {totalClimbs(filtered)}</Col>
@@ -115,7 +118,8 @@ function Stats(props) {
           </Col>
         </Form.Group>
       </Form>
-    </Container>
+    </Container> 
+  : <h4>To get started, add an entry to your logbook by clicking the button above </h4>
   )
 }
 

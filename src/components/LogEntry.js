@@ -1,8 +1,8 @@
 import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Row, Col, Card, Button } from 'react-bootstrap';
 
 function LogEntry(props) {
-  const { pitches, start_date, style, outcome, rack, beta, notes, partners } = props.entry;
+  const { pitches, start_date, style, outcome, rack, beta, notes, partners, id } = props.entry;
   const { name, full_type, rating, area_array } = props.entry.climb;
 
   const area = () => {
@@ -13,7 +13,6 @@ function LogEntry(props) {
     <Card>
       <Card.Header>
         {start_date + ': ' + name + ' in ' + area()}
-        {/* <Button variant="primary">Go somewhere</Button> */}
       </Card.Header>
       <Card.Body>
         <Row>
@@ -24,6 +23,9 @@ function LogEntry(props) {
           </Col>
           <Col>
             {style + ', ' + outcome}
+          </Col>
+          <Col>
+            <Button variant="danger" onClick={() => props.onDeleteEntry(id)}>Delete</Button>
           </Col>
         </Row>
         {rack ? <><Row><Col>Rack: {rack}</Col></Row></> : null}

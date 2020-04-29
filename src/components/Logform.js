@@ -68,7 +68,7 @@ class Logform extends Component {
 
   outcomes = ['Onsight', 'Flash', 'Tronsight', 'Pinkpoint', 'Redpoint', 'No Falls', 'Repeat', 'Attempt'];
   boulder_outcomes = ['Flash', 'Redpoint', 'Repeat', 'Attempt'];
-  styles = ['Lead', 'Swap Leads', 'Follow', 'Toprope', 'Solo'];
+  styles = ['Lead', 'Swap Leads', 'Follow', 'Toprope', 'Solo', 'Simul'];
 
   render() {
     const { name, full_type, rating, pitches, key_type } = this.props.climb;

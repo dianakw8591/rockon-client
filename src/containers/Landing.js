@@ -8,7 +8,13 @@ export default function Landing(props) {
 
   return (
     <div className="row">
-      <div className="col-7"></div>
+      <div className="col-2"></div>
+      <div className="col-4">
+        <h4>RockOn is your digital climbing logbook. 
+          Record your ascents and attempts and visualize your climbing history. 
+          Sign up or log in to get started:</h4>
+      </div>
+      <div className="col-2"></div>
       <div className="col-4">
         {signupForm ?
           <Signup onSignin={onLogin} /> :
