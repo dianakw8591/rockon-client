@@ -19,13 +19,15 @@ export default function Graph(props) {
   const maxRatingT = _.map(tradDate, (value) => _.maxBy(value, 'climb.numeric_rating'))
   const sortedT = _.sortBy(maxRatingT, 'start_date');
   const maxRatingDataT = _.map(sortedT, (obj) => [moment(obj.start_date).valueOf(), obj.climb.numeric_rating])
-  
+
+  console.log(sortedT)
+
   //boulder data series
   const boulderDate = groupByDate(groupByType['Boulder'])
   const maxRatingB = _.map(boulderDate, (value) => _.maxBy(value, 'climb.numeric_rating'))
   const sortedB = _.sortBy(maxRatingB, 'start_date');
   const maxRatingDataB = _.map(sortedB, (obj) => [moment(obj.start_date).valueOf(), obj.climb.numeric_rating])
- 
+
 
   const options = {
     chart: {
@@ -35,11 +37,21 @@ export default function Graph(props) {
       text: 'Climbs by Highest Grade per Day'
     },
     xAxis: {
-      type: 'datetime'
+      type: 'datetime',
+      title: {
+        enabled: true,
+        text: 'Date'
+      },
+    },
+    yAxis: {
+      title: {
+        text: 'Climbing Grade (converted)'
+      }
     },
     series: [
       {
         name: 'Trad',
+        color: 'rgba(223, 83, 83, .5)',
         data: maxRatingDataT
       },
       {

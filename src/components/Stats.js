@@ -75,9 +75,9 @@ function Stats(props) {
     <Graph entries={filtered}/>
       <Card>
         <Row>
-          <Col>Total climbs: {totalClimbs(filtered)}</Col>
-          <Col>Total days out: {totalDays(filtered)}</Col>
-          <Col>Total pitches: {totalPitches(filtered)}</Col>
+          <Col><h4>Total climbs: {totalClimbs(filtered)}</h4></Col>
+          <Col><h4>Total days out: {totalDays(filtered)}</h4></Col>
+          <Col><h4>Total pitches: {totalPitches(filtered)}</h4></Col>
         </Row>
       </Card>
       <Form>
