@@ -28,11 +28,8 @@ export default function Graph(props) {
     return _.sortBy(arr, 'start_date');
   }
 
-  //builds series for spline graph
-
-  const seriesBuilder = (type, outcome) => {
-    const sortedArr = sortByDate(maxForDate(groupByDate(groupByOutcome(groupByType[type])[outcome])))
-    return _.map(sortedArr, (obj) => {
+  const objBuilder = (arr) => {
+    return _.map(arr, (obj) => {
       return ({
         x: moment(obj.start_date).valueOf(),
         y: obj.climb.numeric_rating,
@@ -46,32 +43,20 @@ export default function Graph(props) {
     })
   }
 
-  // // trad redpoint series
-  // const tradRedpoint = groupByOutcome(groupByType['Trad'])['Redpoint']
-  // const tradDate = groupByDate(tradRedpoint)
-  // const maxRatingT = _.map(tradDate, (value) => _.maxBy(value, 'climb.numeric_rating'))
-  // const sortedT = _.sortBy(maxRatingT, 'start_date');
-  // const maxRatingDataT = _.map(sortedT, (obj) => {
-  //   return ({
-  //     x: moment(obj.start_date).valueOf(),
-  //     y: obj.climb.numeric_rating,
-  //     climbName: obj.climb.name,
-  //     rating: obj.climb.rating,
-  //     style: obj.style,
-  //     outcome: obj.outcome,
-  //     id: obj.id,
-  //     climb_id: obj.climb.id,
-  //   })
-  // })
+  //builds series for spline graph
 
+  const splineSeriesBuilder = (type, outcome) => {
+    const sortedArr = sortByDate(maxForDate(groupByDate(groupByOutcome(groupByType[type])[outcome])));
+    return objBuilder(sortedArr);
+  }
 
-  // console.log(sortedT)
+  //builds series for scatter graph
 
-  // //boulder data series
-  // const boulderDate = groupByDate(groupByType['Boulder'])
-  // const maxRatingB = _.map(boulderDate, (value) => _.maxBy(value, 'climb.numeric_rating'))
-  // const sortedB = _.sortBy(maxRatingB, 'start_date');
-  // const maxRatingDataB = _.map(sortedB, (obj) => [moment(obj.start_date).valueOf(), obj.climb.numeric_rating])
+  const scatterSeriesBuilder = (type) => {
+    return objBuilder(groupByType[type])
+  }
+
+  //grade converters
 
   const yds_conversion = {
     "5.0": 1,
@@ -156,19 +141,41 @@ export default function Graph(props) {
 
   const options = {
     chart: {
-      type: 'spline'
+      zoomType: 'xy'
     },
     title: {
       text: 'Climbs by Highest Grade per Day'
     },
+    plotOptions: {
+      spline: {
+        enableMouseTracking: false,
+        marker: {
+          enabled: false
+        },
+      },
+      scatter: {
+        jitter: {
+          x: 10000000,
+          y: 0
+        },
+        cursor: 'pointer',
+        point: {
+          events: {
+            click: function () {
+              console.log(this.climbName);
+            }
+          }
+        },
+      }
+    },
     tooltip: {
-      shared: true,
+      // shared: true,
       useHTML: true,
       headerFormat: '<small>{point.key}</small><table>',
       pointFormat: '<tr><td style="color: {series.color}">{point.climbName} </td>' +
         '<td style="text-align: right"><b>{point.rating}</b></td></tr>' +
         '<tr><td>Style: {point.style}</td></tr>' +
-        '<tr><td>Outcome: {point.outcome}</td></tr>' ,
+        '<tr><td>Outcome: {point.outcome}</td></tr>',
       footerFormat: '</table>',
     },
     xAxis: {
@@ -208,21 +215,45 @@ export default function Graph(props) {
     ],
     series: [
       {
+        name: 'Trad Redpoints',
+        type: 'spline',
+        yAxis: 0,
+        color: 'rgba(223, 83, 83, 1)',
+        data: splineSeriesBuilder("Trad", "Redpoint")
+      },
+      {
+        name: 'Sport Redpoints',
+        type: 'spline',
+        yAxis: 0,
+        data: splineSeriesBuilder("Sport", "Redpoint")
+      },
+      {
+        name: 'Boulder Redpoints',
+        type: 'spline',
+        yAxis: 1,
+        data: splineSeriesBuilder("Boulder", "Redpoint")
+      },
+      {
         name: 'Trad',
+        type: 'scatter',
         yAxis: 0,
         color: 'rgba(223, 83, 83, .5)',
-        data: seriesBuilder("Trad", "Redpoint")
+        data: scatterSeriesBuilder("Trad")
       },
       {
         name: 'Sport',
+        type: 'scatter',
         yAxis: 0,
-        data: seriesBuilder("Sport", "Redpoint")
+        color: 'rgba(119, 152, 191, .5)',
+        data: scatterSeriesBuilder("Sport")
       },
       {
         name: 'Boulder',
+        type: 'scatter',
         yAxis: 1,
-        data: seriesBuilder("Boulder", "Redpoint")
-      },
+        color: 'rgba(0, 0, 0, .5)',
+        data: scatterSeriesBuilder("Boulder")
+      }
     ]
   };
 
