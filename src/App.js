@@ -4,6 +4,7 @@ import NavBar from './containers/NavBar';
 import Landing from './containers/Landing';
 import Dashboard from './containers/Dashboard';
 import Account from './containers/Account';
+import About from './components/About';
 import { api } from './services/api';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
@@ -61,10 +62,10 @@ class App extends React.Component {
         <div>
           <Router>
             <NavBar switchForm={this.switchForm} signupForm={this.state.signupForm} handleLogout={this.logout} authUser={this.state.authUser} />
-            {/* <Route exact path='/' render={(props) => <Landing {...props} signupForm={this.state.signupForm} onLogin={this.login} />} /> */}
             <Route exact path="/">
               {this.state.authUser.id ? <Redirect to="/dashboard/stats" /> : <Landing signupForm={this.state.signupForm} onLogin={this.login} />}
             </Route>
+            <Route exact path='/about' component={About} />
             <Route path='/dashboard' render={(props) => <Dashboard {...props} authUser={this.state.authUser} />} />
             <Route exact path='/account' render={(props) => <Account {...props} authUser={this.state.authUser} onUpdateUser={this.updateUser} handleLogout={this.logout} />} />
           </Router>

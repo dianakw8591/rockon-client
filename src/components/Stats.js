@@ -11,7 +11,7 @@ function Stats(props) {
 
   const firstDate = moment(entries[entries.length - 1].start_date).toDate();
   const lastDate = moment(entries[0].start_date).toDate();
-  // const outcomes = ['Onsight', 'Flash', 'Tronsight', 'Pinkpoint', 'Redpoint', 'No Falls', 'Repeat', 'Attempt'];
+  // outcomes = ['Onsight', 'Flash', 'Redpoint','Pinkpoint','Repeat','Tronsight', 'No Falls', 'TR Attempt', 'Attempt'];
   // const boulder_outcomes = ['Flash', 'Redpoint', 'Repeat', 'Attempt'];
   // const styles = ['Lead', 'Swap Leads', 'Follow', 'Toprope', 'Solo']
 

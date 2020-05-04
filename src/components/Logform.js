@@ -66,7 +66,7 @@ class Logform extends Component {
     return array.map(e => <option value={e} key={e}>{e}</option>)
   }
 
-  outcomes = ['Onsight', 'Flash', 'Tronsight', 'Pinkpoint', 'Redpoint', 'No Falls', 'Repeat', 'Attempt'];
+  outcomes = ['Onsight', 'Flash', 'Redpoint','Pinkpoint','Repeat','Tronsight', 'No Falls', 'TR Attempt', 'Attempt'];
   boulder_outcomes = ['Flash', 'Redpoint', 'Repeat', 'Attempt'];
   styles = ['Lead', 'Swap Leads', 'Follow', 'Toprope', 'Solo', 'Simul'];
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Card } from 'react-bootstrap';
 import { api } from '../services/api';
 import '../App.css';
 
@@ -72,12 +72,13 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
         <Container>
-          <Form.Label>Create an account:</Form.Label>
-          <br />
-          <br />
+        <Card>
+            <Card.Body>
           <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+            <Form.Group >
+              <Form.Label>Create an account:</Form.Label>
+            </Form.Group>
             <Form.Group as={Row}>
               <Form.Label column sm="3">Username:</Form.Label>
               <Col sm="9">
@@ -181,8 +182,9 @@ class Signup extends Component {
               </Button>
             </Form.Group>
           </Form>
+          </Card.Body>
+          </Card>
         </Container>
-      </div>
     )
   }
 }

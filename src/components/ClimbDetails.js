@@ -39,6 +39,12 @@ export default function ClimbDetails(props) {
   const allNotes = _.compact(linkedEntries.map(entry => entry.notes));
   const allBeta = _.compact(linkedEntries.map(entry => entry.beta));
   const allRack = _.compact(linkedEntries.map(entry => entry.rack));
+  const outcomes = _.groupBy(linkedEntries, 'outcome');
+  const outcomesDiv = _.map(outcomes, (entries, outcome) => {
+    return (
+      <p>{outcome}: {entries.length}</p>
+    )
+  })
 
   return (loading ? <h4>Loading...</h4> :
     <DashboardLayout sidebar={<StatsLogContainer entries={linkedEntries} />}>
@@ -48,6 +54,10 @@ export default function ClimbDetails(props) {
           {area()}<br />
           {full_type + ' ' + rating + (key_type !== "Boulder" ? (' pitches: ' + pitches) : '')}<br />
           <a href={`https://www.mountainproject.com/route/${mtnproj_id}`} target="_blank" rel="noopener noreferrer">View on Moutain Project</a>
+          <br />
+          <br />
+          <h6>Outcomes:</h6>
+          {outcomesDiv}
           <br />
           <br />
           <h6>All rack beta: </h6>

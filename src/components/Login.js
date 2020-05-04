@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Container, Button, Form, Row, Col, Card } from 'react-bootstrap';
 import { api } from '../services/api';
 import '../App.css';
 
@@ -55,6 +55,8 @@ class Login extends Component {
     return (
       <div>
         <Container>
+          <Card>
+            <Card.Body>
           <Form.Label>Log in to your account:</Form.Label>
           <br />
           <br />
@@ -98,6 +100,8 @@ class Login extends Component {
           </Button>
             </Form.Group>
           </Form>
+          </Card.Body>
+          </Card>
         </Container>
       </div>
     )

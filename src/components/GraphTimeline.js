@@ -11,19 +11,22 @@ export default function GraphTimeline(props) {
 
   const { entries } = props;
 
+  // const groupByDate = _.groupBy(entries, 'start_date')
+  // const mapTypes = () => {
+  //   _.map(groupByDate, (arr, date) => {
+  //     if (arr.length > 1) {
+  //       _.groupBy(arr, 'outcome  ')
+  //     }
+  //   })
+  // }
+
   const objBuilder = () => {
     return _.map(entries, (obj) => {
       return ({
         x: moment(obj.start_date).valueOf(),
-        // y: obj.climb.numeric_rating,
         name: obj.outcome,
         label: obj.outcome,
-        // climbName: obj.climb.name,
-        // rating: obj.climb.rating,
-        // style: obj.style,
-        // outcome: obj.outcome,
-        // id: obj.id,
-        // climb_id: obj.climb.climb_id,
+        description: (obj.style || '') + (obj.partners ? ` with ${obj.partners}`: '')
       })
     })
   }
@@ -54,7 +57,7 @@ export default function GraphTimeline(props) {
     series:[{
       dataLabels: {
         alternate: true,
-        distance: 150,
+        distance: 130,
         allowOverlap: true,
         format: '<span style="color:{point.color}">● </span><span style="font-weight: bold;" > ' +
             '{point.x:%d %b %Y}</span><br/>{point.label}'

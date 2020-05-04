@@ -15,20 +15,33 @@ export default function Landing(props) {
     backgroundRepeat: 'no-repeat',
     width: '1300px',
     height: 'auto',
-    top: '0px',
-    backgroundRepeat: 'no-repeat',
-    opacity: '75%'
+    top: '30px',
+    left: '0px',
+    opacity: '80%',
+    zIndex: '-1',
+  };
+
+  const footerStyle = {
+    position: 'fixed',
+    left: '0',
+    bottom: '0',
+    width: '100%',
+    // color: 'white',
+    textAlign: 'left',
+    paddingLeft: `32px`,
   };
 
   return (
     <div className='padding'>
       <div style={sectionStyle}></div>
       <div className="row">
-        <div className="col-6"></div>
-        <div className="col-6">
-          <h4>RockOn is your digital climbing logbook.
+        <div className="col-5"></div>
+        <div className="col-7">
+          <h4 className="text-center">RockOn is your digital climbing logbook.
           Record your ascents and attempts and visualize your climbing history.
           Sign up or log in to get started.</h4>
+          <br />
+          <br />
         </div>
       </div>
       <div className="row">
@@ -40,6 +53,11 @@ export default function Landing(props) {
             <Login onLogin={onLogin} />
           }
         </div>
+      </div>
+      <div style={footerStyle}>
+        <p className="font-italic">Alpenglow in the Range of Light...    Art by
+          <a href='https://gutzjourney.com/' target="_blank" rel="noopener noreferrer"> Natalie Brechtel</a>
+        </p>
       </div>
     </div>
   )
