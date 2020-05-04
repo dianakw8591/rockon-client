@@ -31,7 +31,7 @@ class Login extends Component {
     } else {
       event.preventDefault()
       const user = {
-        user: this.state.fields 
+        user: this.state.fields
       }
       api.auth.login(user).then(resp => {
         if (!resp.error) {
@@ -92,9 +92,11 @@ class Login extends Component {
               </Col>
             </Form.Group>
             {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Button variant="secondary" type="submit" >
-              Log in
+            <Form.Group as={Row} className="justify-content-center">
+              <Button variant="secondary" type="submit" >
+                Log in
           </Button>
+            </Form.Group>
           </Form>
         </Container>
       </div>

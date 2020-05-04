@@ -175,7 +175,7 @@ class Signup extends Component {
               </Col>
             </Form.Group>
             {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Form.Group as={Row}>
+            <Form.Group as={Row} className="justify-content-center">
               <Button variant="secondary" type="submit" >
                 Create account
               </Button>
