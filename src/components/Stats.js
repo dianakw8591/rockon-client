@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
-import { Card, Container, Row, Col, Form } from 'react-bootstrap';
+import { Card, Row, Col, Form } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import * as moment from 'moment';
 import Graph from './Graph';
+import StatsLogContainer from './StatsLogContainer';
+import DashboardLayout from '../containers/DashboardLayout';
 
 function Stats(props) {
   const { entries } = props;
@@ -45,7 +47,7 @@ function Stats(props) {
     .filter(e => moment(e.start_date) <= moment(end))
     .filter(e => typeArray.includes(e.climb.key_type))
 
-  
+
 
   // functions to display data
   const totalDays = (log) => {
@@ -70,56 +72,59 @@ function Stats(props) {
     return sum;
   }
 
-  return (  entries.length > 0 ? 
-    <Container fluid="xl">
-    <Graph entries={filtered}/>
-      <Card>
-        <Row>
-          <Col><h4>Total climbs: {totalClimbs(filtered)}</h4></Col>
-          <Col><h4>Total days out: {totalDays(filtered)}</h4></Col>
-          <Col><h4>Total pitches: {totalPitches(filtered)}</h4></Col>
-        </Row>
-      </Card>
-      <Form>
-        <Form.Label>Filter Options:</Form.Label>
-        <Form.Group as={Row} >
-          <Form.Label column >Start date:</Form.Label>
-          <Col >
-            <DatePicker
-              name='start_date'
-              onChange={handleStartDateChange}
-              value={start}
-            />
-          </Col>
-          <Form.Label column >End date:</Form.Label>
-          <Col >
-            <DatePicker
-              name='end_date'
-              onChange={handleEndDateChange}
-              value={end}
-            />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} controlId="style" >
-          <Form.Label column sm='2'>Select styles:</Form.Label>
-          <Col>
-            <div key={`inline-checkbox`} className="mb-3">
-              {Object.keys(keytype).map(key => (
-                <Form.Check inline
-                  type="checkbox"
-                  onChange={handleTypeToggle}
-                  label={key}
-                  key={key}
-                  name={key}
-                  checked={keytype[key]}
-                />
-              ))}
-            </div>
-          </Col>
-        </Form.Group>
-      </Form>
-    </Container> 
-  : <h4>To get started, add an entry to your logbook by clicking the button above </h4>
+  const sidebar = <StatsLogContainer entries={filtered} />
+
+  return (
+    <DashboardLayout sidebar={sidebar}>
+      <>
+        <Graph entries={filtered} />
+        <Card>
+          <Row>
+            <Col><h4>Total climbs: {totalClimbs(filtered)}</h4></Col>
+            <Col><h4>Total days out: {totalDays(filtered)}</h4></Col>
+            <Col><h4>Total pitches: {totalPitches(filtered)}</h4></Col>
+          </Row>
+        </Card>
+        <Form>
+          <Form.Label>Filter Options:</Form.Label>
+          <Form.Group as={Row} >
+            <Form.Label column >Start date:</Form.Label>
+            <Col >
+              <DatePicker
+                name='start_date'
+                onChange={handleStartDateChange}
+                value={start}
+              />
+            </Col>
+            <Form.Label column >End date:</Form.Label>
+            <Col >
+              <DatePicker
+                name='end_date'
+                onChange={handleEndDateChange}
+                value={end}
+              />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} controlId="style" >
+            <Form.Label column sm='2'>Select styles:</Form.Label>
+            <Col>
+              <div key={`inline-checkbox`} className="mb-3">
+                {Object.keys(keytype).map(key => (
+                  <Form.Check inline
+                    type="checkbox"
+                    onChange={handleTypeToggle}
+                    label={key}
+                    key={key}
+                    name={key}
+                    checked={keytype[key]}
+                  />
+                ))}
+              </div>
+            </Col>
+          </Form.Group>
+        </Form>
+      </>
+    </DashboardLayout>
   )
 }
 
@@ -131,3 +136,4 @@ export default Stats
 // filter grade Range
 // filter style
 // filter outcome
+

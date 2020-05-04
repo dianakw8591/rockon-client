@@ -6,7 +6,7 @@ function LogEntry(props) {
   const { name, full_type, rating, area_array } = props.entry.climb;
 
   const area = () => {
-    return area_array.join('>')
+    return area_array.join(' > ')
   }
 
   return (

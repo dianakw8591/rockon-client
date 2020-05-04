@@ -57,6 +57,12 @@ const searchClimbs = (route) => {
   }).then(resp => resp.json());
 };
 
+const getClimb = (id) => {
+  return fetch(`${API_ROOT}/climbs/${id}`, {
+    headers: headers(),
+  }).then(resp => resp.json());
+};
+
 const addEntry = (entry, user_id) => {
   return fetch(`${API_ROOT}/users/${user_id}/user_climbs`, {
     method: 'POST',
@@ -90,6 +96,7 @@ export const api = {
   },
   climb: {
     searchClimbs,
+    getClimb,
   },
   entry: {
     getEntries,

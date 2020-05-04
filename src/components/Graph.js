@@ -1,11 +1,12 @@
 import React from 'react';
+import { withRouter } from "react-router-dom";
 import _ from 'lodash';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import * as moment from 'moment';
 
 
-export default function Graph(props) {
+const Graph  = (props) => {
   const { entries } = props;
 
   //helper functions
@@ -37,8 +38,8 @@ export default function Graph(props) {
         rating: obj.climb.rating,
         style: obj.style,
         outcome: obj.outcome,
-        id: obj.id,
-        climb_id: obj.climb.id,
+        // id: obj.id,
+        climb_id: obj.climb.climb_id,
       })
     })
   }
@@ -144,7 +145,7 @@ export default function Graph(props) {
       zoomType: 'xy'
     },
     title: {
-      text: 'Climbs by Highest Grade per Day'
+      text: 'Your Climbs'
     },
     plotOptions: {
       spline: {
@@ -162,7 +163,7 @@ export default function Graph(props) {
         point: {
           events: {
             click: function () {
-              console.log(this.climbName);
+              props.history.push(`/dashboard/climbs/${this.climb_id}`);
             }
           }
         },
@@ -230,7 +231,7 @@ export default function Graph(props) {
       {
         name: 'Boulder Redpoints',
         type: 'spline',
-        yAxis: 1,
+        yAxis: 0,
         data: splineSeriesBuilder("Boulder", "Redpoint")
       },
       {
@@ -250,7 +251,7 @@ export default function Graph(props) {
       {
         name: 'Boulder',
         type: 'scatter',
-        yAxis: 1,
+        yAxis: 0,
         color: 'rgba(0, 0, 0, .5)',
         data: scatterSeriesBuilder("Boulder")
       }
@@ -259,8 +260,8 @@ export default function Graph(props) {
 
 
   return (
-    <>
       <HighchartsReact highcharts={Highcharts} options={options} />
-    </>
   )
 }
+
+export default withRouter(Graph)

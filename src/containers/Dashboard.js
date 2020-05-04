@@ -4,7 +4,8 @@ import { Route, Redirect } from "react-router-dom";
 import { api } from '../services/api';
 import Logbook from './Logbook';
 import Stats from '../components/Stats';
-import Onboard from '../components/Onboard'
+import Onboard from '../components/Onboard';
+import ClimbDetails from '../components/ClimbDetails';
 
 
 function Dashboard(props) {
@@ -50,6 +51,10 @@ function Dashboard(props) {
           <Route exact path='/dashboard/onboard'>
             {entries.length > 0 ? <Redirect to='/dashboard/stats' />:  <Onboard />}
           </Route>
+          <Route 
+            path="/dashboard/climbs/:id"
+            render={(props) => <ClimbDetails {...props} entries={sortByDate()}/>}
+          />
           <Route path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} entries={sortByDate()} onDeleteEntry={deleteEntry} />} />
         </>}
     </>
