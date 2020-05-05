@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 import _ from 'lodash';
 import { Row, Col } from 'react-bootstrap';
@@ -42,7 +43,7 @@ export default function ClimbDetails(props) {
   const outcomes = _.groupBy(linkedEntries, 'outcome');
   const outcomesDiv = _.map(outcomes, (entries, outcome) => {
     return (
-      <p>{outcome}: {entries.length}</p>
+      <p key={outcome}>{outcome}: {entries.length}</p>
     )
   })
 
@@ -50,6 +51,9 @@ export default function ClimbDetails(props) {
     <DashboardLayout sidebar={<StatsLogContainer entries={linkedEntries} />}>
       <Row>
         <Col sm={9}>
+          <Link to='/dashboard/stats'>{`<< Back to Dashboard`}</Link>
+          <br />
+          <br />
           <h4>{name}</h4>
           {area()}<br />
           {full_type + ' ' + rating + (key_type !== "Boulder" ? (' pitches: ' + pitches) : '')}<br />

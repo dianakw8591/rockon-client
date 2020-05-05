@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import 'multirange/multirange.css'
 import NavBar from './containers/NavBar';
 import Landing from './containers/Landing';
 import Dashboard from './containers/Dashboard';
