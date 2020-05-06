@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Form, Row, Col, ListGroup, Jumbotron } from 'react-bootstrap';
+import { Button, Form, Col, ListGroup, Card } from 'react-bootstrap';
 import DatePicker from 'react-date-picker';
 import * as moment from 'moment';
 import { api } from '../services/api';
@@ -9,17 +9,15 @@ class Logform extends Component {
   state = {
     error: false,
     fields: {
-      pitches: this.props.climb.pitches || 1,
+      pitches: this.props.climb.pitches || 0,
       start_date: new Date(),
       style: '',
-      led_pitches: '',
       outcome: '',
       partners: '',
       rack: '',
       notes: '',
     }
   };
-
 
   handleChange = e => {
     const newFields = { ...this.state.fields, [e.target.name]: e.target.value };
@@ -37,36 +35,35 @@ class Logform extends Component {
     api.entry.addEntry(entry, this.props.id).then(resp => {
       if (!resp.error) {
         this.setState({ error: false })
-        this.props.onSubmit(resp);   
+        this.props.onSubmit(resp);
       } else {
         this.setState({
           error: resp.error,
         })
       }
-      // this.setState({
-      //   fields: {
-      //     ...this.state.fields,
-      //     style: '',
-      //     led_pitches: '',
-      //     outcome: '',
-      //     partners: '',
-      //     rack: '',
-      //     beta: '',
-      //     notes: '',
-      //   }
-      // })
+      this.setState({
+        fields: {
+          ...this.state.fields,
+          style: '',
+          outcome: '',
+          partners: '',
+          rack: '',
+          beta: '',
+          notes: '',
+        }
+      })
     });
   };
 
   area = () => {
-    return this.props.climb.area_array.join('>')
+    return this.props.climb.area_array.join(' > ')
   }
 
   createOptions = (array) => {
     return array.map(e => <option value={e} key={e}>{e}</option>)
   }
 
-  outcomes = ['Onsight', 'Flash', 'Redpoint','Pinkpoint','Repeat','Tronsight', 'No Falls', 'TR Attempt', 'Attempt'];
+  outcomes = ['Onsight', 'Flash', 'Redpoint', 'Pinkpoint', 'Repeat', 'Tronsight', 'No Falls', 'TR Attempt', 'Attempt'];
   boulder_outcomes = ['Flash', 'Redpoint', 'Repeat', 'Attempt'];
   styles = ['Lead', 'Swap Leads', 'Follow', 'Toprope', 'Solo', 'Simul'];
 
@@ -76,117 +73,114 @@ class Logform extends Component {
     return (
       <>
         <ListGroup.Item variant='dark'>
-          <h6>{name}</h6>
-          {this.area()}<br />
-          {full_type + ' ' + rating + (key_type !== "Boulder" ? (' pitches: ' + pitches) : '')}
+          <span className="font-weight-bold">{name}</span><span> ({this.area()})</span>
+          <div>{full_type + ' ' + rating + (pitches ? (' pitches: ' + pitches) : '')}</div>
         </ListGroup.Item>
         <br />
-        <br />
-        <Jumbotron>
-
-          <Form onSubmit={this.handleSubmit}>
-            <Form.Label>Log your climb:</Form.Label>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">Date:</Form.Label>
-              <Col sm="4">
-                <DatePicker
-                  name='start_date'
-                  onChange={this.handleDateChange}
-                  value={this.state.fields.start_date}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              {key_type !== "Boulder" ?
-                <>
-                  <Form.Label column sm="1">Pitches:</Form.Label>
-                  <Col sm="1">
-                    <Form.Control
-                      type="number"
-                      name="pitches"
-                      onChange={event => this.handleChange(event)}
-                      value={this.state.fields.pitches}
+        <Card border="info" >
+          <Card.Body>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label ><h5>Log your climb:</h5></Form.Label>
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label>Date:</Form.Label><br />
+                  <div>
+                    <DatePicker
+                      name='start_date'
+                      onChange={this.handleDateChange}
+                      value={this.state.fields.start_date}
                     />
-                  </Col>
-                  <Form.Label column sm="1">Style:</Form.Label>
-                  <Col sm="2">
-                    <Form.Control
-                      as="select"
-                      name="style"
-                      value={this.state.fields.style}
-                      onChange={event => this.handleChange(event)}>
-                      <option>Select a style</option>
-                      {this.createOptions(this.styles)}
-                    </Form.Control>
-                  </Col>
-                </>
-                : <></>}
-              <Form.Label column sm="1">Outcome:</Form.Label>
-              <Col sm="2">
-                <Form.Control
-                  as="select"
-                  name='outcome'
-                  value={this.state.fields.outcome}
-                  onChange={event => this.handleChange(event)}>
-                  <option>Select an outcome</option>
-                  {key_type !== "Boulder" ? this.createOptions(this.outcomes) : this.createOptions(this.boulder_outcomes)}
-                </Form.Control>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">Partners:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  type="text"
-                  name="partners"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.partners}
-                />
-              </Col>
-            </Form.Group>
-            {key_type !== "Boulder" ?
-              <Form.Group as={Row}>
-                <Form.Label column sm="2">Rack:</Form.Label>
-                <Col sm="9">
+                  </div>
+                </Form.Group>
+                {key_type !== "Boulder" ?
+                  <>
+                    <Form.Group as={Col}>
+                      <Form.Label >Pitches:</Form.Label>
+                      <Form.Control
+                        type="number"
+                        name="pitches"
+                        onChange={event => this.handleChange(event)}
+                        value={this.state.fields.pitches}
+                      />
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                      <Form.Label>Style:</Form.Label>
+                      <Form.Control
+                        as="select"
+                        name="style"
+                        value={this.state.fields.style}
+                        onChange={event => this.handleChange(event)}>
+                        <option>Select a style</option>
+                        {this.createOptions(this.styles)}
+                      </Form.Control>
+                    </Form.Group>
+                  </>
+                  : <></>}
+                <Form.Group as={Col}>
+                  <Form.Label >Outcome:</Form.Label>
+                  <Form.Control
+                    as="select"
+                    name='outcome'
+                    value={this.state.fields.outcome}
+                    onChange={event => this.handleChange(event)}>
+                    <option>Select an outcome</option>
+                    {key_type !== "Boulder" ? this.createOptions(this.outcomes) : this.createOptions(this.boulder_outcomes)}
+                  </Form.Control>
+                </Form.Group>
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label >Partners:</Form.Label>
                   <Form.Control
                     type="text"
-                    name="rack"
+                    name="partners"
                     onChange={event => this.handleChange(event)}
-                    value={this.state.fields.rack}
+                    value={this.state.fields.partners}
                   />
-                </Col>
-              </Form.Group>
-              : <></>}
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">Beta:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  as='textarea'
-                  name="beta"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.beta}
-                />
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="2">Notes:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  as='textarea'
-                  name="notes"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.notes}
-                />
-              </Col>
-            </Form.Group>
-            {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Form.Group as={Row}>
-              <Button variant="secondary" type="submit">
-                Submit Entry
+                </Form.Group>
+                {key_type !== "Boulder" ?
+                  <Form.Group as={Col}>
+                    <Form.Label >Rack:</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="rack"
+                      onChange={event => this.handleChange(event)}
+                      value={this.state.fields.rack}
+                    />
+                  </Form.Group>
+                  : <></>}
+              </Form.Row>
+              <Form.Row>
+                <Form.Group as={Col}>
+                  <Form.Label>Beta:</Form.Label>
+                  <Form.Control
+                    as='textarea'
+                    name="beta"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.beta}
+                  />
+                </Form.Group>
+                <Form.Group as={Col}>
+                  <Form.Label >Notes:</Form.Label>
+                  <Form.Control
+                    as='textarea'
+                    name="notes"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.notes}
+                  />
+                </Form.Group>
+              </Form.Row>
+              {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
+              <Form.Row className='justify-content-center'>
+                <Button variant="outline-info" type="submit">
+                  Submit Entry
               </Button>
-            </Form.Group>
-          </Form>
-        </Jumbotron>
+              </Form.Row>
+            </Form>
+          </Card.Body>
+        </Card>
       </>
     )
   }

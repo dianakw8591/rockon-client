@@ -11,9 +11,8 @@ function SelectClimb(props) {
 
   return (
     <ListGroup.Item action variant='light' onClick={() => onSelectRoute(climb)}>
-      <h6>{name}</h6>
-      {area()}<br />
-      {full_type + ' ' + rating + (key_type !== "Boulder" ? (' pitches: ' + pitches) : '')}
+      <span className="font-weight-bold">{name}</span><span> ({area()})</span>
+      <div>{full_type + ' ' + rating + (key_type !== "Boulder" ? (' pitches: ' + pitches) : '')}</div>
     </ListGroup.Item>
   )
 }

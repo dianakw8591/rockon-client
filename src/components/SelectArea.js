@@ -22,7 +22,7 @@ function SelectArea(props) {
 
   return (
     <ListGroup.Item action variant='light' onClick={() => onSelectArea(area, parentArray(area))}>
-      <h6>{name} ({parentArray(area)})</h6>
+      <span class="font-weight-bold">{name}</span><span> ({parentArray(area)})</span>
     </ListGroup.Item>
   )
 }

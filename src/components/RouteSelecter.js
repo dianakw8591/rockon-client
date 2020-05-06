@@ -11,16 +11,10 @@ function RouteSelecter(props) {
   const [searchC, setSearchC] = useState('');
   const [searchA, setSearchA] = useState('');
 
-  // boolean for displaying search results
-  // const [resultsC, setResultsC] = useState(false);
-  // const [resultsA, setResultsA] = useState(false);
-
   // results from search for climbs or areas
   const [climbs, setClimbs] = useState(null);
   const [areas, setAreas] = useState(null)
 
-  // boolean for displaying autosuggest route form
-  // const [autoform, setAutoForm] = useState(false);
   //save the selected area and the formatted parent array
   const [selectedA, setSelectedA] = useState(null);
   const [parents, setParents] = useState(null)
@@ -35,14 +29,11 @@ function RouteSelecter(props) {
         setAreas(null);
         setSelectedA(null);
         setClimbs(data.climbs);
-        // setResultsA(false)
-        // setResultsC(true);
         setSearchC("");
       })
   }
 
   const selectRoute = (climb) => {
-    // setResultsC(false);
     props.onSelectRoute(climb)
     setClimbs(null)
   }
@@ -55,37 +46,29 @@ function RouteSelecter(props) {
         setClimbs(null);
         setSelectedA(null);
         setAreas(data);
-        // setResultsC(false)
-        // setResultsA(true);
         setSearchA("");
       })
   }
 
   const selectArea = (area, parentArray) => {
-    //get all routes for that area
-    //stop showing results
-    //show form with chosen area and search box for the autofill search
     api.area.getArea(area.id)
-    .then(data => {
-      // setResultsA(false)
-      setAutoList(data)
-      setSelectedA(area)
-      setParents(parentArray)
-      // setAutoForm(true)
-      setAreas(null)
-    })
+      .then(data => {
+        setAutoList(data)
+        setSelectedA(area)
+        setParents(parentArray)
+        setAreas(null)
+      })
   }
 
   return (
     <>
-    <br />
-    <br />
+      <br />
+      <br />
       <Row>
-        <Col>
-          To add an entry, first find the climb. Search either by route name or by area.
-      </Col>
+        <Col className='text-center'>
+          <h6>To add an entry, first find the climb. Search either by route name or by area.</h6>
+        </Col>
       </Row>
-      <br/>
       <br />
       <Row>
         <Col>
@@ -101,7 +84,7 @@ function RouteSelecter(props) {
                   value={searchC}
                 />
               </Col>
-              <Button variant="secondary" type="submit" column='true' >
+              <Button variant="outline-info" type="submit" column='true' >
                 Search
           </Button>
             </Form.Group>
@@ -120,9 +103,9 @@ function RouteSelecter(props) {
                   value={searchA}
                 />
               </Col>
-              <Button variant="secondary" type="submit" column='true' >
+              <Button variant="outline-info" type="submit" column='true' >
                 Search
-          </Button>
+              </Button>
             </Form.Group>
           </Form>
         </Col>
@@ -130,25 +113,27 @@ function RouteSelecter(props) {
       <div>
         {climbs ?
           (climbs.length === 0 ?
-            <h4>No results found. Please try again.</h4> :
+            <h5>No results found. Please try again.</h5>
+            :
             <div>
-              <h5>Select a climb:</h5>
+              <h6>Select a climb:</h6>
               <ListGroup variant="flush">
                 {climbs.map(climb => <SelectClimb key={climb.id} climb={climb} onSelectRoute={selectRoute} />)}
               </ListGroup>
             </div>) :
           null}
-          {areas ?
+        {areas ?
           (areas.length === 0 ?
-            <h4>No results found. Please try again.</h4> :
+            <h5>No results found. Please try again.</h5>
+            :
             <div>
-              <h5>Select an area:</h5>
+              <h6>Select an area:</h6>
               <ListGroup variant="flush">
                 {areas.map(area => <SelectArea key={area.id} area={area} onSelectArea={selectArea} />)}
               </ListGroup>
             </div>) :
           null}
-          { selectedA ? <AutoForm autoList={autoList} area={selectedA} parents={parents} onSelectRoute={selectRoute} /> : null}
+        {selectedA ? <AutoForm autoList={autoList} area={selectedA} parents={parents} onSelectRoute={selectRoute} /> : null}
       </div>
     </>
   )

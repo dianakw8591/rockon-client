@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ListGroup, Button, Form, Row, Col, Jumbotron } from 'react-bootstrap';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import Autosuggest from 'react-autosuggest';
 
 //suggestion functions from react-autosuggest example code, converted to use in a functional component
@@ -77,32 +77,38 @@ export default function AutoForm(props) {
 
   return (
     <>
-      <ListGroup.Item variant='dark'>
-        <h6>{area.name} ({parents})</h6>
-      </ListGroup.Item>
-      <br />
-      <br />
-      <Jumbotron>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group as={Row}>
-            <Form.Label column sm="2">Search routes:</Form.Label>
-            <Col sm="4">
-              <Autosuggest
-                suggestions={suggestions}
-                onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-                onSuggestionsClearRequested={onSuggestionsClearRequested}
-                getSuggestionValue={getSuggestionValue}
-                renderSuggestion={renderSuggestion}
-                inputProps={inputProps}
-              />
-            </Col>
-            <Button variant="secondary" type="submit" column='true'>
-              Select Climb
+      <Card className="text-center">
+        <Card.Header>
+          <h6>{area.name} ({parents})</h6>
+        </Card.Header>
+        <Card.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group as={Row}>
+              <Col className='text-right' md='4'>
+              <Form.Label >Search {area.name} routes:</Form.Label>
+              </Col>
+              <Col md='4'>
+                <Autosuggest
+                  suggestions={suggestions}
+                  onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+                  onSuggestionsClearRequested={onSuggestionsClearRequested}
+                  getSuggestionValue={getSuggestionValue}
+                  renderSuggestion={renderSuggestion}
+                  inputProps={inputProps}
+                />
+              </Col>
+              <Col md='2'>
+                <Button variant="outline-info" type="submit" >
+                  Select Climb
                 </Button>
-          {noMatch ? <Form.Text> No route matches your search. Try again. </Form.Text> : null}
-          </Form.Group>
-        </Form>
-      </Jumbotron>
+              </Col>
+              <Col></Col>
+            </Form.Group>
+            {noMatch ? <Form.Text> No route matches your search. Try again. </Form.Text> : null}
+          </Form>
+        </Card.Body>
+      </Card>
+      <br />
     </>
   )
 }
