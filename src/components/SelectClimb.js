@@ -6,7 +6,7 @@ function SelectClimb(props) {
   const { name, pitches, full_type, rating, area_array, key_type } = props.climb;
 
   const area = () => {
-    return area_array.join('>')
+    return area_array.join(' > ')
   }
 
   return (

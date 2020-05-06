@@ -63,6 +63,20 @@ const getClimb = (id) => {
   }).then(resp => resp.json());
 };
 
+const searchAreas = (area) => {
+  const url = new URL(`${API_ROOT}/areas`);
+  url.searchParams.append("q", area);
+  return fetch(url, {
+    headers: headers(),
+  }).then(resp => resp.json());
+};
+
+const getArea = (id) => {
+  return fetch(`${API_ROOT}/areas/${id}`, {
+    headers: headers(),
+  }).then(resp => resp.json());
+};
+
 const addEntry = (entry, user_id) => {
   return fetch(`${API_ROOT}/users/${user_id}/user_climbs`, {
     method: 'POST',
@@ -97,6 +111,10 @@ export const api = {
   climb: {
     searchClimbs,
     getClimb,
+  },
+  area: {
+    searchAreas,
+    getArea,
   },
   entry: {
     getEntries,
