@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import AuthHOC from '../HOCs/authHOC';
 import { api } from '../services/api';
 import EditUserForm from '../components/EditUserForm';
-import Button from 'react-bootstrap/Button';
+import { Button, Container, Col, Row, Card } from 'react-bootstrap';
 
 
 function Account(props) {
@@ -23,34 +23,48 @@ function Account(props) {
   }
 
   return (
-    <div id='sideBar' className="container-fluid row">
-      <div className='left-side-menu col-2 text-center'></div>
+    <div className='padding'>
+      <Container>
+        <Row>
+          <Col>
+            <Card>
+              <Card.Header>
+                <strong>Your Profile: </strong>
+              </Card.Header>
+              <Card.Body>
+                <Card.Text>
+                  Username: {username}
+                </Card.Text>
+                <Card.Text>
+                  Name: {first_name} {last_name}
+                </Card.Text>
+                <Card.Text>
+                  Email: {email}
+                </Card.Text>
+            <Row>
+              <Col>
+                <Button variant="outline-info" onClick={() => setShowEditForm(true)}>
+                  Edit your profile
+                </Button>
+              </Col>
+              <Col>
+                <Button variant="outline-danger" onClick={handleDeleteAccount}>
+                  Delete Your Account
+                </Button>
+              </Col>
+            </Row>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col>
+            {showEditForm ?
+              <EditUserForm authUser={authUser} onUpdateUser={onUpdateUser} hideForm={() => setShowEditForm(false)} />
+              : null
+            }
+          </Col>
 
-      <main id="mainbar" className="col-7">
-        <div className="white-trans-bg">
-          {showEditForm ?
-            <EditUserForm authUser={authUser} onUpdateUser={onUpdateUser} hideForm={()=>setShowEditForm(false)} />
-            : <div>
-              <h5>Your Profile: </h5>
-              Username: {username}<br />
-              Name: {first_name} {last_name} <br />
-              Email: {email}<br />
-              </div>
-          }
-
-          <div> 
-          <Button variant="outline-secondary" onClick={() => setShowEditForm(true)}>
-          Edit your profile
-        </Button><br />
-        <Button variant="outline-secondary" onClick={handleDeleteAccount}>
-          Delete Your Account
-        </Button>
-            
-          </div>
-        </div>
-
-      </main>
-
+        </Row>
+      </Container>
     </div>
   )
 }

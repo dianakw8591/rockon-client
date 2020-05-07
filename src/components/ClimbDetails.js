@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from '../services/api';
 import _ from 'lodash';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Card } from 'react-bootstrap';
 import StatsLogContainer from './StatsLogContainer';
 import DashboardLayout from '../containers/DashboardLayout';
 import GraphTimeline from './GraphTimeline';
@@ -14,12 +14,6 @@ export default function ClimbDetails(props) {
   const climbId = props.match.params.id;
   const [climb, setClimb] = useState({});
   const [loading, setLoading] = useState(true);
-
-  // const {
-  //   beta: {
-  //     gear
-  //   } = {}
-  // } = climb
 
   const { name, rating, full_type, key_type, area_array, pitches, mtnproj_id } = climb;
 
@@ -51,6 +45,8 @@ export default function ClimbDetails(props) {
     <DashboardLayout sidebar={<StatsLogContainer entries={linkedEntries} />}>
       <Row>
         <Col sm={9}>
+          <Card className='shadow-sm'>
+            <Card.Body>
           <Link to='/dashboard/stats'>{`<< Back to Dashboard`}</Link>
           <br />
           <br />
@@ -76,6 +72,8 @@ export default function ClimbDetails(props) {
           <ul>
             {allNotes.map(note => <li key={note}>{note}</li>)}
           </ul>
+          </Card.Body>
+          </Card>
         </Col>
         <Col>
           <GraphTimeline entries={linkedEntries} />

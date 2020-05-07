@@ -64,52 +64,54 @@ function RouteSelecter(props) {
     <>
       <br />
       <br />
-      <Row>
-        <Col className='text-center'>
-          <h6>To add an entry, first find the climb. Search either by route name or by area.</h6>
-        </Col>
-      </Row>
-      <br />
-      <Row>
-        <Col>
-          <Form onSubmit={handleRouteSubmit}>
-            <Form.Group as={Row} controlId='routeform'>
-              <Form.Label column sm="3">Route name:</Form.Label>
-              <Col sm="7">
-                <Form.Control
-                  type="text"
-                  name="routeinpute"
-                  placeholder="Try 'nose'..."
-                  onChange={(event) => setSearchC(event.target.value)}
-                  value={searchC}
-                />
-              </Col>
-              <Button variant="outline-info" type="submit" column='true' >
-                Search
+      <div className='bglight'>
+        <Row >
+          <Col className='text-center'>
+            <h6>To add an entry, first find the climb. Search either by route name or by area.</h6>
+          </Col>
+        </Row>
+        <br />
+        <Row>
+          <Col>
+            <Form onSubmit={handleRouteSubmit}>
+              <Form.Group as={Row} controlId='routeform'>
+                <Form.Label column sm="3">Route name:</Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    type="text"
+                    name="routeinpute"
+                    placeholder="Try 'nose'..."
+                    onChange={(event) => setSearchC(event.target.value)}
+                    value={searchC}
+                  />
+                </Col>
+                <Button variant="outline-info" type="submit" column='true' >
+                  Search
           </Button>
-            </Form.Group>
-          </Form>
-        </Col>
-        <Col>
-          <Form onSubmit={handleAreaSubmit}>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">OR Area name:</Form.Label>
-              <Col sm="7">
-                <Form.Control
-                  type="text"
-                  name="areainput"
-                  placeholder="Try 'el cap'..."
-                  onChange={(event) => setSearchA(event.target.value)}
-                  value={searchA}
-                />
-              </Col>
-              <Button variant="outline-info" type="submit" column='true' >
-                Search
+              </Form.Group>
+            </Form>
+          </Col>
+          <Col>
+            <Form onSubmit={handleAreaSubmit}>
+              <Form.Group as={Row}>
+                <Form.Label column sm="3">OR Area name:</Form.Label>
+                <Col sm="7">
+                  <Form.Control
+                    type="text"
+                    name="areainput"
+                    placeholder="Try 'el cap'..."
+                    onChange={(event) => setSearchA(event.target.value)}
+                    value={searchA}
+                  />
+                </Col>
+                <Button variant="outline-info" type="submit" column='true' >
+                  Search
               </Button>
-            </Form.Group>
-          </Form>
-        </Col>
-      </Row>
+              </Form.Group>
+            </Form>
+          </Col>
+        </Row>
+      </div>
       <div>
         {climbs ?
           (climbs.length === 0 ?

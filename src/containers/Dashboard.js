@@ -54,11 +54,11 @@ function Dashboard(props) {
             {entries.length > 0 ? <Stats entries={sortByDate()} /> : <Redirect to="/dashboard/onboard" />}
           </Route>
           <Route exact path='/dashboard/onboard'>
-            {entries.length > 0 ? <Redirect to='/dashboard/stats' />:  <Onboard />}
+            <Onboard />
           </Route>
-          <Route 
+          <Route
             path="/dashboard/climbs/:id"
-            render={(props) => <ClimbDetails {...props} entries={sortByDate()}/>}
+            render={(props) => <ClimbDetails {...props} entries={sortByDate()} />}
           />
           <Route path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} onUpdateEntry={updateEntry} entries={sortByDate()} onDeleteEntry={deleteEntry} />} />
         </>}

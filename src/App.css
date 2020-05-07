@@ -1,11 +1,14 @@
 
 .padding {
-  padding: 32px;
+  padding: 16px;
+}
+
+.bglight {
+  background-color: #f7f7f7;
 }
 
 .Trad label {
   color: #dc3545
-  /* color: rgba(223, 83, 83, 1); */
 }
 
 .Sport label {
@@ -22,6 +25,10 @@
 
 .Attempt label {
   color: rgb(144,237,125);
+}
+
+.Repeat label {
+  color: rgb(241,92,128);
 }
 
 .react-autosuggest__container {

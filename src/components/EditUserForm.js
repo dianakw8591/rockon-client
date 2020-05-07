@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Button, Form, Row, Col } from 'react-bootstrap';
+import { Button, Form, Row, Col, Card } from 'react-bootstrap';
 import { api } from '../services/api';
 import '../App.css';
 
@@ -44,79 +44,81 @@ class EditUserForm extends Component {
   render() {
     return (
       <div>
-        <Container>
-          <Form.Label>Update your account:</Form.Label>
-          <br />
-          <br />
-          <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Username:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  required
-                  type="text"
-                  name="username"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.username}
-                />
-                <Form.Control.Feedback type="invalid">
-                  You must enter a username.
+        <Card>
+          <Card.Header>
+            <strong>Update your account:</strong>
+          </Card.Header>
+          <Card.Body>
+            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+              <Form.Group as={Row}>
+                <Form.Label column sm="3">Username:</Form.Label>
+                <Col sm="9">
+                  <Form.Control
+                    required
+                    type="text"
+                    name="username"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.username}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    You must enter a username.
             </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">First Name:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  required
-                  type="text"
-                  name="first_name"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.first_name}
-                />
-                <Form.Control.Feedback type="invalid">
-                  You must enter a first name.
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="3">First Name:</Form.Label>
+                <Col sm="9">
+                  <Form.Control
+                    required
+                    type="text"
+                    name="first_name"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.first_name}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    You must enter a first name.
             </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Last Name:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  required
-                  type="text"
-                  name="last_name"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.last_name}
-                />
-                <Form.Control.Feedback type="invalid">
-                  You must enter a last name.
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="3">Last Name:</Form.Label>
+                <Col sm="9">
+                  <Form.Control
+                    required
+                    type="text"
+                    name="last_name"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.last_name}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    You must enter a last name.
             </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Email:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  required
-                  type="text"
-                  name="email"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.email}
-                />
-                <Form.Control.Feedback type="invalid">
-                  You must enter an email.
+                </Col>
+              </Form.Group>
+              <Form.Group as={Row}>
+                <Form.Label column sm="3">Email:</Form.Label>
+                <Col sm="9">
+                  <Form.Control
+                    required
+                    type="text"
+                    name="email"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.email}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    You must enter an email.
             </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Form.Group as={Row}>
-              <Button variant="secondary" type="submit" block>
-                Update Profile
+                </Col>
+              </Form.Group>
+              {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
+              <Form.Group as={Row} className="justify-content-center">
+                <Button variant="info" type="submit" >
+                  Update Profile
               </Button>
-            </Form.Group>
-          </Form>
-        </Container>
+              </Form.Group>
+            </Form>
+          </Card.Body>
+        </Card>
       </div>
     )
   }

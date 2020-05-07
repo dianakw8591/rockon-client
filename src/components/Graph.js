@@ -260,7 +260,9 @@ const Graph  = (props) => {
 
 
   return (
+    <div className='shadow-sm'>
       <HighchartsReact highcharts={Highcharts} options={options} />
+      </div>
   )
 }
 

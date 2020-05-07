@@ -1,7 +1,8 @@
-import React from 'react'
-import { Navbar, Nav, Button, NavDropdown, Col } from "react-bootstrap"
-import { Link, NavLink } from "react-router-dom"
-import { LinkContainer } from "react-router-bootstrap"
+import React from 'react';
+import { Navbar, Nav, Button, NavDropdown, Col } from "react-bootstrap";
+import { Link, NavLink } from "react-router-dom";
+import { LinkContainer } from "react-router-bootstrap";
+import logo from '../assets/logo.png';
 
 export default function NavBar(props) {
   const { authUser, signupForm, switchForm, handleLogout } = props;
@@ -9,7 +10,14 @@ export default function NavBar(props) {
   return (
     <Navbar variant="light" style={{backgroundColor: "rgba(63, 81, 181, 0.18"}}>
       <Navbar.Brand >
-        {authUser.id ? <Link to="/dashboard/stats"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
+        <Link to={authUser.id ? "/dashboard/stats" : "/"} className='text-decoration-none'>    
+        <img
+        src={logo}
+        width="auto"
+        height="50"
+        className="d-inline-block align-top"
+        alt="RockOn logo"
+      /></Link>
       </Navbar.Brand>
       <Col>
         <Nav className="mr-auto">
@@ -30,6 +38,7 @@ export default function NavBar(props) {
             </LinkContainer>
             <NavDropdown title={authUser.username} variant='light'>
               <NavDropdown.Item as={NavLink} to='/account' exact >Account</NavDropdown.Item>
+              <NavDropdown.Item as={NavLink} to='/dashboard/onboard' exact >How To</NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout} as={NavLink} to='/' exact>Logout</NavDropdown.Item>
             </NavDropdown>
           </>

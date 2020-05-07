@@ -13,7 +13,7 @@ export default function StatsLogContainer(props) {
   }
 
   return (
-    <div className="overflow-auto mh-100 position-absolute" style={{width: 'calc(100% - 64px)'}}>
+    <div className="overflow-auto mh-100 position-absolute sm-shadow" style={{width: 'calc(100% - 64px)', height: 'calc(100% - 64px)'}}>
       <ListGroup variant="flush">
       {_.map(sortedByDate, (arr, date) => {
         return <StatsLogEntry key={date} date={date} showDetails={ activeDate === date } onSelect={select} entries={arr} />

@@ -67,7 +67,7 @@ export default function StatsLogEntry(props) {
   return (
     <ListGroup.Item action onClick={() => onSelect(date)}>
       <div className="d-flex justify-content-between" >
-        <span><h6>{date}</h6></span>
+        <span ><strong>{date}</strong></span>
         <span text-allign='right'>{entries.length === 1 ?
           climbLink(singleEntry) :
           multiEntries.map(type => <div key={type}>{type}</div>)}</span>

@@ -106,7 +106,7 @@ const BarGraph = (props) => {
   }
 
   //build data series for bar graph
-  
+
   const seriesBuilder = (outcome, type) => {
     if (type !== "Boulder ") {
       return buildDataArray(groupByRating(sortRopedSends(groupByType[type])[outcome]))
@@ -170,19 +170,19 @@ const BarGraph = (props) => {
         name: 'Repeat',
         data: seriesBuilder('Repeat', 'Trad'),
         stack: 'Trad',
-        color: Highcharts.getOptions().colors[1],
+        color: Highcharts.getOptions().colors[5],
       }, {
         name: 'Repeat',
         data: seriesBuilder('Repeat', 'Sport'),
         linkedTo: ':previous',
         stack: 'Sport',
-        color: Highcharts.getOptions().colors[1],
+        color: Highcharts.getOptions().colors[5],
       }, {
         name: 'Repeat',
         data: seriesBuilder('Repeat', 'Boulder'),
         linkedTo: ':previous',
         stack: 'Boulder',
-        color: Highcharts.getOptions().colors[1],
+        color: Highcharts.getOptions().colors[5],
       }, {
         name: 'Attempt',
         data: seriesBuilder('Attempt', 'Trad'),
@@ -216,13 +216,15 @@ const BarGraph = (props) => {
         data: seriesBuilder('Flash', 'Boulder'),
         // linkedTo: ':previous',
         stack: 'Boulder',
-        color: Highcharts.getOptions().colors[5],
+        color: Highcharts.getOptions().colors[6],
       }
     ]
   };
 
   return (
-    <HighchartsReact highcharts={Highcharts} options={options} />
+    <div className='shadow-sm'>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
   )
 }
 

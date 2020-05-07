@@ -32,40 +32,40 @@ function Stats(props) {
   })
 
   const mapNumericGrade = {
-    1: "5.0",
-    2: "5.1",
-    3: "5.2",
-    4: "5.3",
-    5: "5.4",
-    6: "5.5",
-    7: "5.6",
-    8: "5.7",
-    9: "5.8",
-    10: "5.9",
-    11: "5.10a",
-    12: "5.10b",
-    13: "5.10c",
-    14: "5.10d",
-    15: "5.11a",
-    16: "5.11b",
-    17: "5.11c",
-    18: "5.11d",
-    19: "5.12a",
-    20: "5.12b",
-    21: "5.12c",
-    22: "5.12d",
-    23: "5.13a",
-    24: "5.13b",
-    25: "5.13c",
-    26: "5.13d",
-    27: "5.14a",
-    28: "5.14b",
-    29: "5.14c",
-    30: "5.14d",
-    31: "5.15a",
-    32: "5.15b",
-    33: "5.15c",
-    34: "5.15d",
+    1: "5.0 (VB)",
+    2: "5.1 (VB)",
+    3: "5.2 (VB)",
+    4: "5.3 (VB)",
+    5: "5.4 (VB)",
+    6: "5.5 (VB)",
+    7: "5.6 (VB)",
+    8: "5.7 (VB)",
+    9: "5.8 (VB)",
+    10: "5.9 (V0)",
+    11: "5.10a (V0)",
+    12: "5.10b (V0)",
+    13: "5.10c (V1)",
+    14: "5.10d (V1)",
+    15: "5.11a (V2)",
+    16: "5.11b (V2)",
+    17: "5.11c (V3)",
+    18: "5.11d (V4)",
+    19: "5.12a (V5)",
+    20: "5.12b (V5)",
+    21: "5.12c (V6)",
+    22: "5.12d (V7)",
+    23: "5.13a (V7)",
+    24: "5.13b (V8)",
+    25: "5.13c (V8)",
+    26: "5.13d (V9)",
+    27: "5.14a (V10)",
+    28: "5.14b (V11)",
+    29: "5.14c (V12)",
+    30: "5.14d (V13)",
+    31: "5.15a (V14)",
+    32: "5.15b (V15)",
+    33: "5.15c (V16)",
+    34: "5.15d (V17)",
   }
 
   //types
@@ -174,18 +174,27 @@ function Stats(props) {
   return (
     <DashboardLayout sidebar={sidebar}>
       <>
-        <Row>
-          <Col><strong>Total climbs: {totalClimbs(filtered)}</strong></Col>
-          <Col><strong>Total days out: {totalDays(filtered)}</strong></Col>
-          <Col><strong>Total pitches: {totalPitches(filtered)}</strong></Col>
-        </Row>
+      <Row>
+        <Col md={10}>
         <Graph entries={filtered} />
-        <Row>
+        </Col>
+      <Col>
+      <Card className="text-center shadow-sm" >
+          <Card.Header><h5>Your Totals:</h5></Card.Header>
+        <Card.Body>
+          <Card.Text><strong>Climbs: <span className='text-success'>{totalClimbs(filtered)}</span></strong></Card.Text>
+          <Card.Text><strong>Days out: <span className='text-success'>{totalDays(filtered)}</span></strong></Card.Text>
+          <Card.Text><strong>Pitches: <span className='text-success'>{totalPitches(filtered)}</span></strong></Card.Text>
+        </Card.Body>
+        </Card>
+        </Col>
+        </Row>
+        <Row style={{paddingTop: '32px'}}>
           <Col>
             <BarGraph entries={filtered} />
           </Col>
           <Col>
-            <Card>
+            <Card className='shadow-sm'>
               <Card.Header>
                 <strong>Apply Filters:</strong>
               </Card.Header>

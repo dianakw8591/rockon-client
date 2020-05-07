@@ -38,8 +38,8 @@ function LogEntry(props) {
         <Row>
           <Col>
             <Card.Text >
-              {rating + ' ' + full_type}
-              {(pitches ? ` pitches: ${pitches}` : '')}
+              <strong>{rating + ' ' + full_type}
+              {(pitches ? ` pitches: ${pitches}` : '')}</strong>
             </Card.Text>
           </Col>
           <Col>
@@ -52,9 +52,9 @@ function LogEntry(props) {
             <Button variant="outline-danger" onClick={() => props.onDeleteEntry(id)}>Delete</Button>
           </Col>
         </Row>
-        {rack ? <><Row><Col><span className='text-info'>Rack:</span> {rack}</Col></Row></> : null}
-        {beta ? <><Row><Col><span className='text-info'>Beta:</span> {beta}</Col></Row></> : null}
-        {notes ? <><Row><Col><span className='text-info'>Notes:</span> {notes}</Col></Row></> : null}
+        {rack ? <><Row><Col><strong>Rack:</strong> {rack}</Col></Row></> : null}
+        {beta ? <><Row><Col><strong>Beta:</strong> {beta}</Col></Row></> : null}
+        {notes ? <><Row><Col><strong>Notes:</strong> {notes}</Col></Row></> : null}
       </Card.Body>
       }
     </Card>

@@ -19,7 +19,7 @@ export default function GraphTimeline(props) {
         x: moment(obj.start_date).valueOf(),
         name: obj.outcome,
         label: obj.outcome,
-        description: (obj.style || '') + (obj.partners ? ` with ${obj.partners}`: '')
+        description: (obj.style || '') + (obj.partners ? ` with ${obj.partners}` : '')
       })
     })
   }
@@ -47,22 +47,24 @@ export default function GraphTimeline(props) {
     title: {
       text: "Timeline",
     },
-    series:[{
+    series: [{
       dataLabels: {
         alternate: true,
         distance: 130,
         allowOverlap: true,
         format: '<span style="color:{point.color}">● </span><span style="font-weight: bold;" > ' +
-            '{point.x:%d %b %Y}</span><br/>{point.label}'
-    },
+          '{point.x:%d %b %Y}</span><br/>{point.label}'
+      },
       marker: {
         symbol: 'circle',
       },
       data: objBuilder(),
-    }]  
+    }]
   }
 
   return (
-    <HighchartsReact highcharts={Highcharts} options={options} />
+    <div className='shadow-sm'>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
   )
 }
