@@ -91,6 +91,14 @@ const getEntries = (user_id) => {
   }).then(resp => resp.json());
 };
 
+const updateEntry = (data, user_id) => {
+  return fetch(`${API_ROOT}/users/${user_id}/user_climbs/${data.entry.id}`, {
+    method: "PUT",
+    headers: headers(),
+    body: JSON.stringify(data)
+  }).then(resp => resp.json());
+};
+
 const deleteEntry = (entry_id, user_id) => {
   return fetch(`${API_ROOT}/users/${user_id}/user_climbs/${entry_id}`, {
     method: "DELETE",
@@ -120,5 +128,6 @@ export const api = {
     getEntries,
     addEntry,
     deleteEntry,
+    updateEntry,
   }
 };

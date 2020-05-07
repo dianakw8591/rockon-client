@@ -4,7 +4,8 @@
 }
 
 .Trad label {
-  color: rgba(223, 83, 83, 1);
+  color: #dc3545
+  /* color: rgba(223, 83, 83, 1); */
 }
 
 .Sport label {

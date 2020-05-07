@@ -26,6 +26,10 @@ function Dashboard(props) {
     setEntries([entry, ...entries])
   }
 
+  const updateEntry = (data) => {
+    setEntries(entries.map(entry => entry.id === data.id ? data : entry))
+  }
+
   const deleteEntry = (entry_id) => {
     api.entry.deleteEntry(entry_id, authUser.id)
       .then(data => {
@@ -41,6 +45,7 @@ function Dashboard(props) {
     }
   }
 
+
   return (
     <>
       {loading ? <div><h2>Loading...</h2></div> :
@@ -55,7 +60,7 @@ function Dashboard(props) {
             path="/dashboard/climbs/:id"
             render={(props) => <ClimbDetails {...props} entries={sortByDate()}/>}
           />
-          <Route path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} entries={sortByDate()} onDeleteEntry={deleteEntry} />} />
+          <Route path={`/dashboard/log`} render={(props) => <Logbook {...props} id={authUser.id} onAddEntry={addEntry} onUpdateEntry={updateEntry} entries={sortByDate()} onDeleteEntry={deleteEntry} />} />
         </>}
     </>
 

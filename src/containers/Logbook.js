@@ -6,7 +6,7 @@ import RouteSelecter from '../components/RouteSelecter';
 
 
 function Logbook(props) {
-  const { id, onAddEntry, entries, onDeleteEntry } = props;
+  const { id, onAddEntry, entries, onDeleteEntry, onUpdateEntry } = props;
   const [showForm, setShowForm] = useState(false);
   const [climb, setClimb] = useState('');
   const [showToast, setShowToast] = useState(false)
@@ -49,7 +49,7 @@ function Logbook(props) {
           backgroundColor: 'rgb(191, 190, 190)',
           height: 1
         }} />
-        {entries.length > 0 ? entries.map(entry => <LogEntry key={entry.id} entry={entry} onDeleteEntry={onDeleteEntry} />) : <h4>No climbs recorded yet!</h4>}
+        {entries.length > 0 ? entries.map(entry => <LogEntry key={entry.id} entry={entry} onDeleteEntry={onDeleteEntry} id={id} onUpdateEntry={onUpdateEntry} />) : <h4>No climbs recorded yet!</h4>}
       </Container>
     </div>
   )

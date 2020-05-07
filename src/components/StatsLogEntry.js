@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom'
 import { ListGroup } from 'react-bootstrap';
 import _ from 'lodash';
@@ -82,10 +82,10 @@ export default function StatsLogEntry(props) {
             <>
               {entries.map(entry => {
                 return (
-                  <>
+                  <Fragment key={entry.id}>
                     {climbLink(entry)}
                     {infoDiv(entry)}
-                  </>)
+                  </Fragment>)
               })}
             </>
           } </> : null}
