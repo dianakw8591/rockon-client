@@ -131,20 +131,6 @@ const BarGraph = (props) => {
       title: {
         text: 'Number of Ascents'
       },
-      // stackLabels: {
-      //   enabled: true,
-      //   verticalAlign: 'bottom',
-      //   rotation: 45,
-      //   crop: false,
-      //   overflow: 'none',
-      //   y: 20,
-      //   formatter: function() {
-      //     return this.stack;
-      //   },
-      //   style: {
-      //     fontSize: '9px'
-      //   }
-      // }
     },
     tooltip: {
       formatter: function () {
@@ -165,98 +151,75 @@ const BarGraph = (props) => {
         name: 'Send',
         data: seriesBuilder('Send', 'Trad'),
         stack: 'Trad',
-        // color: 'rgb(144,237,125)',
-        // borderWidth: 2,
-        // borderColor: 'rgba(223, 83, 83, 1)',
+        color: Highcharts.getOptions().colors[4],
+
       }, {
         name: 'Send',
         data: seriesBuilder('Send', 'Sport'),
         linkedTo: ':previous',
         stack: 'Sport',
-        color: Highcharts.getOptions().colors[0],
-        // borderWidth: 2,
-        // borderColor: "rgb(124, 181, 236)",
+        color: Highcharts.getOptions().colors[4],
+
       }, {
         name: 'Send',
         data: seriesBuilder('Send', 'Boulder'),
         linkedTo: ':previous',
         stack: 'Boulder',
-        color: Highcharts.getOptions().colors[0],
-        // borderWidth: 2,
-        // borderColor: 'black',
+        color: Highcharts.getOptions().colors[4],
       }, {
         name: 'Repeat',
         data: seriesBuilder('Repeat', 'Trad'),
         stack: 'Trad',
-        // color: 'rgb(228,211,84)',
-        // borderWidth: 2,
-        // borderColor: 'rgba(223, 83, 83, 1)',
+        color: Highcharts.getOptions().colors[1],
       }, {
         name: 'Repeat',
         data: seriesBuilder('Repeat', 'Sport'),
         linkedTo: ':previous',
         stack: 'Sport',
         color: Highcharts.getOptions().colors[1],
-        // borderWidth: 2,
-        // borderColor: "rgb(124, 181, 236)",
       }, {
         name: 'Repeat',
         data: seriesBuilder('Repeat', 'Boulder'),
         linkedTo: ':previous',
         stack: 'Boulder',
         color: Highcharts.getOptions().colors[1],
-        // borderWidth: 2,
-        // borderColor: 'black',
       }, {
         name: 'Attempt',
         data: seriesBuilder('Attempt', 'Trad'),
         stack: 'Trad',
-        // color: "rgb(247,163,92)",
-        // borderWidth: 2,
-        // borderColor: 'rgba(223, 83, 83, 1)',
+        color: Highcharts.getOptions().colors[2],
       }, {
         name: 'Attempt',
         data: seriesBuilder('Attempt', 'Sport'),
         linkedTo: ':previous',
         stack: 'Sport',
         color: Highcharts.getOptions().colors[2],
-        // borderWidth: 2,
-        // borderColor: "rgb(124, 181, 236)",
       }, {
         name: 'Attempt',
         data: seriesBuilder('Attempt', 'Boulder'),
         linkedTo: ':previous',
         stack: 'Boulder',
         color: Highcharts.getOptions().colors[2],
-        // borderWidth: 2,
-        // borderColor: 'black',
       }, {
         name: 'TR',
         data: seriesBuilder('TR', 'Trad'),
         stack: 'Trad',
-        // color: 'rgb(230, 142, 224)',
-        // borderWidth: 2,
-        // borderColor: 'rgba(223, 83, 83, 1)',
+        color: Highcharts.getOptions().colors[3],
       }, {
         name: 'TR',
         data: seriesBuilder('TR', 'Sport'),
         linkedTo: ':previous',
         stack: 'Sport',
         color: Highcharts.getOptions().colors[3],
-        // borderWidth: 2,
-        // borderColor: "rgb(124, 181, 236)",
       }, {
         name: 'Flash (boulder)',
         data: seriesBuilder('Flash', 'Boulder'),
         // linkedTo: ':previous',
         stack: 'Boulder',
-        color: Highcharts.getOptions().colors[4],
-        // borderWidth: 2,
-        // borderColor: 'black',
+        color: Highcharts.getOptions().colors[5],
       }
     ]
   };
-
 
   return (
     <HighchartsReact highcharts={Highcharts} options={options} />

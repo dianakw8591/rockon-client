@@ -7,8 +7,8 @@ export default function NavBar(props) {
   const { authUser, signupForm, switchForm, handleLogout } = props;
 
   return (
-    <Navbar bg="light" variant="light" >
-      <Navbar.Brand>
+    <Navbar variant="light" style={{backgroundColor: "rgba(63, 81, 181, 0.18"}}>
+      <Navbar.Brand >
         {authUser.id ? <Link to="/dashboard/stats"><h1>RockOn</h1></Link> : <Link to="/"><h1>RockOn</h1></Link>}
       </Navbar.Brand>
       <Col>
@@ -28,8 +28,8 @@ export default function NavBar(props) {
             <LinkContainer to="/dashboard/log">
               <Button variant="outline-primary" className="mr-sm-2"> Log a Climb </Button>
             </LinkContainer>
-            <NavDropdown title={authUser.username} >
-              <NavDropdown.Item as={NavLink} to='/account' exact>Account</NavDropdown.Item>
+            <NavDropdown title={authUser.username} variant='light'>
+              <NavDropdown.Item as={NavLink} to='/account' exact >Account</NavDropdown.Item>
               <NavDropdown.Item onClick={handleLogout} as={NavLink} to='/' exact>Logout</NavDropdown.Item>
             </NavDropdown>
           </>
@@ -38,11 +38,6 @@ export default function NavBar(props) {
             <Button variant="outline-primary" className="mr-sm-2" onClick={switchForm}> {signupForm ? 'Log In' : 'Sign Up'}</Button>
           </LinkContainer>
         }
-
-        {/* <Form inline>
-      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-      <Button variant="outline-primary">Search</Button>
-    </Form> */}
       </Col>
     </Navbar>
   )

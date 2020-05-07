@@ -52,9 +52,9 @@ function LogEntry(props) {
             <Button variant="outline-danger" onClick={() => props.onDeleteEntry(id)}>Delete</Button>
           </Col>
         </Row>
-        {rack ? <><Row><Col>Rack: {rack}</Col></Row></> : null}
-        {beta ? <><Row><Col>Beta: {beta}</Col></Row></> : null}
-        {notes ? <><Row><Col>Notes: {notes}</Col></Row></> : null}
+        {rack ? <><Row><Col><span className='text-info'>Rack:</span> {rack}</Col></Row></> : null}
+        {beta ? <><Row><Col><span className='text-info'>Beta:</span> {beta}</Col></Row></> : null}
+        {notes ? <><Row><Col><span className='text-info'>Notes:</span> {notes}</Col></Row></> : null}
       </Card.Body>
       }
     </Card>

@@ -98,10 +98,10 @@ function Stats(props) {
     'Flash': true,
     'Redpoint': true,
     'Pinkpoint': true,
-    'Repeat': true,
     'Tronsight': true,
     'No Falls': true,
     'TR Attempt': true,
+    'Repeat': true,
     'Attempt': true
   })
 
@@ -174,6 +174,11 @@ function Stats(props) {
   return (
     <DashboardLayout sidebar={sidebar}>
       <>
+        <Row>
+          <Col><strong>Total climbs: {totalClimbs(filtered)}</strong></Col>
+          <Col><strong>Total days out: {totalDays(filtered)}</strong></Col>
+          <Col><strong>Total pitches: {totalPitches(filtered)}</strong></Col>
+        </Row>
         <Graph entries={filtered} />
         <Row>
           <Col>
@@ -181,100 +186,104 @@ function Stats(props) {
           </Col>
           <Col>
             <Card>
-              <Row>
-                <Col><h5>Total climbs: {totalClimbs(filtered)}</h5></Col>
-                <Col><h5>Total days out: {totalDays(filtered)}</h5></Col>
-                <Col><h5>Total pitches: {totalPitches(filtered)}</h5></Col>
-              </Row>
-            </Card>
-            <Form>
-              <Form.Label>Filter Options:</Form.Label>
-              <Form.Group as={Row} >
-                <Form.Label column >Start date:</Form.Label>
-                <Col >
-                  <DatePicker
-                    name='start_date'
-                    onChange={handleStartDateChange}
-                    value={start}
-                  />
-                </Col>
-                <Form.Label column >End date:</Form.Label>
-                <Col >
-                  <DatePicker
-                    name='end_date'
-                    onChange={handleEndDateChange}
-                    value={end}
-                  />
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} >
-                <Form.Label column sm='3'>Select type:</Form.Label>
-                <Col>
-                  <div key={`inline-checkbox`} className="mb-3">
-                    {Object.keys(keytype).map(key => (
-                      <span className={key} key={key}>
-                        <Form.Check inline
-                          type="checkbox"
-                          onChange={handleTypeToggle}
-                          label={key}
-                          name={key}
-                          checked={keytype[key]}
-                        />
-                      </span>
-                    ))}
-                  </div>
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} >
-                <Form.Label column sm='3'>Select styles:</Form.Label>
-                <Col>
-                  <div key={`inline-checkbox`} className="mb-3">
-                    {Object.keys(style).map(key => (
-                      <Form.Check inline
-                        type="checkbox"
-                        onChange={handleStyleToggle}
-                        label={key}
-                        key={key}
-                        name={key}
-                        checked={style[key]}
+              <Card.Header>
+                <strong>Apply Filters:</strong>
+              </Card.Header>
+              <Card.Body>
+                <Form>
+                  {/* <Form.Label>Filter Options:</Form.Label> */}
+                  <Form.Row>
+                  <Form.Group as={Col} >
+                    <Form.Label >Start date:</Form.Label>
+                    <span style={{paddingLeft: '8px'}}>
+                      <DatePicker
+                        name='start_date'
+                        onChange={handleStartDateChange}
+                        value={start}
                       />
-                    ))}
-                  </div>
-                </Col>
-              </Form.Group>
-              <Form.Group as={Row} >
-                <Form.Label column sm='3'>Select outcomes:</Form.Label>
-                <Col>
-                  <div key={`inline-checkbox`} className="mb-3">
-                    {Object.keys(outcome).map(key => (
-                      <span className={mappingRopeOutcomes[key]} key={key}>
-                        <Form.Check inline
-                          type="checkbox"
-                          onChange={handleOutcomeToggle}
-                          label={key}
-                          name={key}
-                          checked={outcome[key]}
-                        />
                       </span>
-                    ))}
-                  </div>
-                </Col>
-              </Form.Group>
-            </Form>
-            <Row >
-              <Col>
-                Select grade range:
+                    </Form.Group>
+                    <Form.Group as={Col}>
+                    <Form.Label >End date:</Form.Label>
+                    <span style={{paddingLeft: '8px'}}>
+                      <DatePicker
+                        name='end_date'
+                        onChange={handleEndDateChange}
+                        value={end}
+                      />
+                      </span>
+                  </Form.Group>
+                  </Form.Row>
+                  <Form.Group as={Row} >
+                    <Form.Label column sm='3'>Select type:</Form.Label>
+                    <Col>
+                      <div key={`inline-checkbox`} className="mb-3">
+                        {Object.keys(keytype).map(key => (
+                          <span className={key} key={key}>
+                            <Form.Check inline
+                              type="checkbox"
+                              onChange={handleTypeToggle}
+                              label={key}
+                              name={key}
+                              checked={keytype[key]}
+                            />
+                          </span>
+                        ))}
+                      </div>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} >
+                    <Form.Label column sm='3'>Select styles:</Form.Label>
+                    <Col>
+                      <div key={`inline-checkbox`} className="mb-3">
+                        {Object.keys(style).map(key => (
+                          <Form.Check inline
+                            type="checkbox"
+                            onChange={handleStyleToggle}
+                            label={key}
+                            key={key}
+                            name={key}
+                            checked={style[key]}
+                          />
+                        ))}
+                      </div>
+                    </Col>
+                  </Form.Group>
+                  <Form.Group as={Row} >
+                    <Form.Label column sm='3'>Select outcomes:</Form.Label>
+                    <Col>
+                      <div key={`inline-checkbox`} className="mb-3">
+                        {Object.keys(outcome).map(key => (
+                          <span className={mappingRopeOutcomes[key]} key={key}>
+                            <Form.Check inline
+                              type="checkbox"
+                              onChange={handleOutcomeToggle}
+                              label={key}
+                              name={key}
+                              checked={outcome[key]}
+                            />
+                          </span>
+                        ))}
+                      </div>
+                    </Col>
+                  </Form.Group>
+                </Form>
+                <Row >
+                  <Col>
+                    Select grade range:
               </Col>
-            </Row>
-            <Row>
-              <Col>
-                Low: {mapNumericGrade[grade.low]}
-              </Col>
-              <Col className="d-flex justify-content-end">
-                High: {mapNumericGrade[grade.high]}
-              </Col>
-            </Row>
-            <MultiRange value={grade} onChange={setGrade} />
+                </Row>
+                <Row>
+                  <Col>
+                    Low: {mapNumericGrade[grade.low]}
+                  </Col>
+                  <Col className="d-flex justify-content-end">
+                    High: {mapNumericGrade[grade.high]}
+                  </Col>
+                </Row>
+                <MultiRange value={grade} onChange={setGrade} />
+              </Card.Body>
+            </Card>
           </Col>
         </Row>
       </>

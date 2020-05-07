@@ -145,7 +145,7 @@ const Graph  = (props) => {
       zoomType: 'xy'
     },
     title: {
-      text: 'Your Climbs'
+      text: null
     },
     plotOptions: {
       spline: {

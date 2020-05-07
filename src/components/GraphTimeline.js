@@ -11,17 +11,10 @@ export default function GraphTimeline(props) {
 
   const { entries } = props;
 
-  // const groupByDate = _.groupBy(entries, 'start_date')
-  // const mapTypes = () => {
-  //   _.map(groupByDate, (arr, date) => {
-  //     if (arr.length > 1) {
-  //       _.groupBy(arr, 'outcome  ')
-  //     }
-  //   })
-  // }
+  const sortedByDate = _.sortBy(entries, 'start_date');
 
   const objBuilder = () => {
-    return _.map(entries, (obj) => {
+    return _.map(sortedByDate, (obj) => {
       return ({
         x: moment(obj.start_date).valueOf(),
         name: obj.outcome,
