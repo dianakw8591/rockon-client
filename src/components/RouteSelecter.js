@@ -5,7 +5,6 @@ import SelectClimb from './SelectClimb';
 import SelectArea from './SelectArea';
 import AutoForm from './AutoForm';
 
-
 function RouteSelecter(props) {
   // user input from intial search form
   const [searchC, setSearchC] = useState('');

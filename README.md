@@ -1,3 +1,39 @@
+# RockOn client
+
+RockOn is a digital logbook for tracking climbing ascents and attempts. After creating an account, a user can search for climbs by route name or area, then log entries associated with a climb. Entries are displayed graphically primarily by time vs grade, and are filterable by date, type, style, outcome, and grade. All ascents associated with a given climb are consolidated on the individual climbs view page.
+
+The frontend is built using React. The backend repo can be found [here](https://github.com/dianakw8591/rockon-backend).
+
+## Installation
+
+  To run locally, download or clone the repository, then run 'npm install'.
+  ```
+  npm install
+  ```
+  To run the project locally, use `npm start` or `yarn start` (more available commands listed below)
+  ```
+  npm start
+  ```
+  To use in conjunction with a locally hosted backend, the `API_ROOT` in `/src/services/api.js` will need to be updated to reflect your localhost. 
+
+## Known Issues
+
+When the LastPass Chrome extension is enabled, a type error occurs when using the 'enter' key for a route or area search. This error does not affect the functionality, but will appear in the console.
+
+## Contributing
+
+Contributions are welcome. Feel free to open a pull request or branch from this project.
+
+## Data
+
+Climb and area data: https://www.mountainproject.com/
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
+_______
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

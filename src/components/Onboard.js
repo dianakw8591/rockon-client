@@ -13,7 +13,7 @@ export default function Onboard() {
       </Row>
       <br />
       <Row>
-        Once you have some entries logged, head back to to the dashboard to view your stats. You'll still see all your logged entries on the righthand side, but there will also be some graphs and filter options. The main graph displays all of your entries, plotted by date and grade. The trend lines for Trad, Boulder, and Sport show only entries that you have selected an outcome of 'Redpoint' for. The highest graded redpoint for each day is used to plot the line graph.
+        Once you have some entries logged, head back to to the dashboard to view your stats. You'll still see all your logged entries on the righthand side, but there will also be some graphs and filter options. The main graph displays all of your entries, plotted by date and grade. The trend lines for Trad, Boulder, and Sport show only entries that you have selected an outcome of 'Redpoint' for. The highest graded redpoint for each day is used to plot the line graph. Currently climbs that have a main type other than Trad, Sport, or Boulder are not supported in the graphing or filtering options. 
       </Row>
       <br />
       <Row>
