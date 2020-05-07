@@ -128,13 +128,6 @@ function Stats(props) {
     'Attempt': 'Attempt'
   };
 
-  // const mappingBoulderOutcomes = {
-  //   'Flash': 'Flash',
-  //   'Redpoint': 'Send',
-  //   'Repeat': 'Repeat',
-  //   'Attempt': 'Attempt'
-  // }
-
 
   // filter the entries list to pass into all forms of viewing data
 

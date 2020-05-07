@@ -38,7 +38,6 @@ const Graph  = (props) => {
         rating: obj.climb.rating,
         style: obj.style,
         outcome: obj.outcome,
-        // id: obj.id,
         climb_id: obj.climb.climb_id,
       })
     })
