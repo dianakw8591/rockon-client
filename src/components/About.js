@@ -34,13 +34,13 @@ export default function About() {
             <Card>
               <Card.Body>
                 <Card.Text>
-                  RockOn is a digital logbook for recording climbing ascents and attempts. RockOn utilizes Mountain Project's API to access a database of climbs, and then allows the user to create an entry connected to a climb. Using information associated with the climb (such as grade) combined with user entered tags, such as the style of the ascent (lead, follow, etc) and outcome (redpoint, flash, etc), a user's climbing story is displayed graphically and easily filtered.
+                  RockOn is a digital logbook for recording climbing ascents and attempts. RockOn utilizes Mountain Project's API to access a database of climbs, and then allows the user to create an entry connected to a climb. Using information associated with the climb (such as grade) combined with user entered tags such as the style of the ascent (lead, follow, etc) and outcome (redpoint, flash, etc), a user's climbing story is displayed graphically and easily filtered.
                 </Card.Text>
                 <Card.Text>
                   Inspired by the years of climbing journals I have at home, RockOn is both specifically designed for recording information related to climbing and displaying a visual story of that history. It is also a work in progress and I welcome any feedback! Thanks for using!
                 </Card.Text>
                 <Card.Text>
-                  -Diana Wendt, 
+                  {'-Diana Wendt, '}
                   {/* <a href=https://www.linkedin.com/in/diana-wendt-360b49123/ target="_blank" rel="noopener noreferrer">
                   </a> */}
                   <a href="mailto:RockOnApp2020@gmail.com">RockOnApp2020@gmail.com</a>
