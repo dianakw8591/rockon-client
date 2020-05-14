@@ -50,7 +50,7 @@ export default function GraphTimeline(props) {
     series: [{
       dataLabels: {
         alternate: true,
-        distance: 130,
+        distance: 150,
         allowOverlap: true,
         format: '<span style="color:{point.color}">● </span><span style="font-weight: bold;" > ' +
           '{point.x:%d %b %Y}</span><br/>{point.label}'

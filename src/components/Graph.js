@@ -237,14 +237,14 @@ const Graph  = (props) => {
         name: 'Trad',
         type: 'scatter',
         yAxis: 0,
-        color: 'rgba(223, 83, 83, .5)',
+        color: 'rgba(223, 83, 83, .7)',
         data: scatterSeriesBuilder("Trad")
       },
       {
         name: 'Sport',
         type: 'scatter',
         yAxis: 0,
-        color: 'rgba(119, 152, 191, .5)',
+        color: 'rgba(119, 152, 191, .7)',
         data: scatterSeriesBuilder("Sport")
       },
       {

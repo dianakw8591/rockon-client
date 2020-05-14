@@ -44,7 +44,7 @@ export default function ClimbDetails(props) {
   return (loading ? <h4>Loading...</h4> :
     <DashboardLayout sidebar={<StatsLogContainer entries={linkedEntries} />}>
       <Row>
-        <Col sm={9}>
+        <Col sm={8}>
           <Card className='shadow-sm'>
             <Card.Body>
           <Link to='/dashboard/stats'>{`<< Back to Dashboard`}</Link>

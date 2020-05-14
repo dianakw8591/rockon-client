@@ -10,7 +10,7 @@ export default function About() {
     minHeight: '1000px',
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
-    width: '480px',
+    width: '370px',
     height: 'auto',
     top: '80px',
     right: '0px',
@@ -18,9 +18,10 @@ export default function About() {
   };
 
   const footerStyle = {
+    fontSize: '12px',
     position: 'fixed',
     left: '0',
-    bottom: '0',
+    bottom: '-8px',
     width: '100%',
     textAlign: 'center',
     paddingLeft: `32px`,
@@ -37,7 +38,7 @@ export default function About() {
                   RockOn is a digital logbook for recording climbing ascents and attempts. RockOn utilizes Mountain Project's API to access a database of climbs, and then allows the user to create an entry connected to a climb. Using information associated with the climb (such as grade) combined with user entered tags such as the style of the ascent (lead, follow, etc) and outcome (redpoint, flash, etc), a user's climbing story is displayed graphically and easily filtered.
                 </Card.Text>
                 <Card.Text>
-                  Inspired by the years of climbing journals I have at home, RockOn is both specifically designed for recording information related to climbing and displaying a visual story of that history. It is also a work in progress and I welcome any feedback! Thanks for using!
+                  Inspired by the years of climbing journals I have at home, RockOn is specifically designed for recording information related to climbing and displaying a visual story of that history. It is also a work in progress and I welcome any feedback! Thanks for using!
                 </Card.Text>
                 <Card.Text>
                   {'-Diana Wendt, '}

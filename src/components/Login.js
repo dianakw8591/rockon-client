@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { Container, Button, Form, Row, Col, Card } from 'react-bootstrap';
+import { Container, Button, Form, Card } from 'react-bootstrap';
 import { api } from '../services/api';
 import '../App.css';
 
@@ -57,50 +57,44 @@ class Login extends Component {
         <Container>
           <Card>
             <Card.Body>
-          <Form.Label>Log in to your account:</Form.Label>
-          <br />
-          <br />
-          <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Username:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  required
-                  type="text"
-                  name="username"
-                  placeholder="Username"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.username}
-                />
-                <Form.Control.Feedback type="invalid">
-                  You must enter a username.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Password:</Form.Label>
-              <Col sm="9">
-                <Form.Control
-                  required
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.fields.password}
-                />
-                <Form.Control.Feedback type="invalid">
-                  You must enter a password.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Form.Group as={Row} className="justify-content-center">
-              <Button variant="secondary" type="submit" >
-                Log in
-          </Button>
-            </Form.Group>
-          </Form>
-          </Card.Body>
+              <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+                <Form.Group>
+                  <Form.Label>Log in to your account:</Form.Label>
+                </Form.Group>
+                <Form.Group >
+                  <Form.Control
+                    required
+                    type="text"
+                    name="username"
+                    placeholder="Username"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.username}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    You must enter a username.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                <Form.Group >
+                  <Form.Control
+                    required
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.fields.password}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    You must enter a password.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
+                <Form.Group className="d-flex justify-content-center">
+                  <Button variant="secondary" type="submit" >
+                    Log in
+                  </Button>
+                </Form.Group>
+              </Form>
+            </Card.Body>
           </Card>
         </Container>
       </div>

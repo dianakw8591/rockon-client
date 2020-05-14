@@ -11,20 +11,21 @@ export default function Landing(props) {
     position: 'fixed',
     backgroundImage: `url(${background})`,
     minHeight: '1000px',
-    backgroundSize: 'auto',
+    backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
-    width: '1300px',
+    width: '1000px',
     height: 'auto',
-    top: '30px',
+    top: '20px',
     left: '0px',
     opacity: '80%',
     zIndex: '-1',
   };
 
   const footerStyle = {
+    fontSize: '12px',
     position: 'fixed',
     left: '0',
-    bottom: '0',
+    bottom: '-8px',
     width: '100%',
     textAlign: 'left',
     paddingLeft: `32px`,
@@ -36,10 +37,9 @@ export default function Landing(props) {
       <div className="row">
         <div className="col-5"></div>
         <div className="col-7">
-          <h4 className="text-center">RockOn is your digital climbing logbook.
+          <h5 className="text-center">RockOn is your digital climbing logbook.
           Record your ascents and attempts and visualize your climbing history.
-          Sign up or log in to get started.</h4>
-          <br />
+          Sign up or log in to get started.</h5>
           <br />
         </div>
       </div>

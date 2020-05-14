@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from "react-router-dom";
-import { Container, Button, Form, Row, Col, Card } from 'react-bootstrap';
+import { Container, Button, Form, Card } from 'react-bootstrap';
 import { api } from '../services/api';
 import '../App.css';
 
@@ -72,16 +72,14 @@ class Signup extends Component {
 
   render() {
     return (
-        <Container>
+      <Container>
         <Card>
-            <Card.Body>
-          <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
-            <Form.Group >
-              <Form.Label>Create an account:</Form.Label>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Username:</Form.Label>
-              <Col sm="9">
+          <Card.Body>
+            <Form noValidate validated={this.state.validated} onSubmit={this.handleSubmit}>
+              <Form.Group >
+                <Form.Label>Create an account:</Form.Label>
+              </Form.Group>
+              <Form.Group >
                 <Form.Control
                   required
                   type="text"
@@ -92,12 +90,9 @@ class Signup extends Component {
                 />
                 <Form.Control.Feedback type="invalid">
                   You must enter a username.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">First Name:</Form.Label>
-              <Col sm="9">
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group >
                 <Form.Control
                   required
                   type="text"
@@ -108,12 +103,9 @@ class Signup extends Component {
                 />
                 <Form.Control.Feedback type="invalid">
                   You must enter a first name.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Last Name:</Form.Label>
-              <Col sm="9">
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group >
                 <Form.Control
                   required
                   type="text"
@@ -124,12 +116,9 @@ class Signup extends Component {
                 />
                 <Form.Control.Feedback type="invalid">
                   You must enter a last name.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Email:</Form.Label>
-              <Col sm="9">
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group >
                 <Form.Control
                   required
                   type="text"
@@ -140,12 +129,9 @@ class Signup extends Component {
                 />
                 <Form.Control.Feedback type="invalid">
                   You must enter an email.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Password:</Form.Label>
-              <Col sm="9">
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group >
                 <Form.Control
                   required
                   type="password"
@@ -156,12 +142,9 @@ class Signup extends Component {
                 />
                 <Form.Control.Feedback type="invalid">
                   You must enter a password.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            <Form.Group as={Row}>
-              <Form.Label column sm="3">Confirm Password:</Form.Label>
-              <Col sm="9">
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group >
                 <Form.Control
                   required
                   type="password"
@@ -172,19 +155,18 @@ class Signup extends Component {
                 />
                 <Form.Control.Feedback type="invalid">
                   You must confirm your password.
-            </Form.Control.Feedback>
-              </Col>
-            </Form.Group>
-            {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
-            <Form.Group as={Row} className="justify-content-center">
-              <Button variant="secondary" type="submit" >
-                Create account
+                </Form.Control.Feedback>
+              </Form.Group>
+              {this.state.error ? <Form.Text> {this.state.error} </Form.Text> : null}
+              <Form.Group className="d-flex justify-content-center">
+                <Button variant="secondary" type="submit" >
+                  Create account
               </Button>
-            </Form.Group>
-          </Form>
+              </Form.Group>
+            </Form>
           </Card.Body>
-          </Card>
-        </Container>
+        </Card>
+      </Container>
     )
   }
 }

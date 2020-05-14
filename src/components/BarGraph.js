@@ -120,7 +120,7 @@ const BarGraph = (props) => {
       type: 'column'
     },
     title: {
-      text: 'Climbs grouped by Grade, Type, and Outcome'
+      text: 'Climbs by Grade, Type, and Outcome'
     },
     xAxis: {
       categories: ['< 5.9 (< V0)', '5.10 (V1)', '5.11 (V2-V4)', '5.12 (V5-V7)', '5.13 (V8-V9)', '5.14 (V10-V13)', '5.15 (V14-V17)']

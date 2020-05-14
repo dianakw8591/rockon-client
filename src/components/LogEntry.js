@@ -18,7 +18,6 @@ function LogEntry(props) {
   }
 
   const cancel = () => {
-    console.log('cancelling')
     setShowEdit(false)
   }
 
