@@ -2,6 +2,8 @@
 
 RockOn is a digital logbook for tracking climbing ascents and attempts. After creating an account, a user can search for climbs by route name or area, then log entries associated with a climb. Entries are displayed graphically primarily by time vs grade, and are filterable by date, type, style, outcome, and grade. All ascents associated with a given climb are consolidated on the individual climbs view page. After a few dozen entries, your dashboard will start to look something like this:
 
+![Dashboard display with logged climbs](src/assets/cropped_screenshot.png)
+
 The frontend is built using React. The backend repo can be found [here](https://github.com/dianakw8591/rockon-backend) and you can visit the site [here](https://rockonapp.com).
 
 ## Installation
