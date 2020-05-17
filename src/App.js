@@ -6,7 +6,7 @@ import Landing from './containers/Landing';
 import Dashboard from './containers/Dashboard';
 import Account from './containers/Account';
 import About from './components/About';
-import { api } from './services/api';
+import { api, API_ROOT } from './services/api';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 class App extends React.Component {
@@ -26,6 +26,8 @@ class App extends React.Component {
       });
     } else {
       this.setState({ loading: false })
+      //ping heroku to wake up the server
+      fetch(API_ROOT)
     }
   }
 
