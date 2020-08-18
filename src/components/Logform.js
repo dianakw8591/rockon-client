@@ -14,6 +14,7 @@ class Logform extends Component {
       style: '',
       outcome: '',
       partners: '',
+      beta: '',
       rack: '',
       notes: '',
     }

@@ -14,7 +14,7 @@ export default function StatsLogEntry(props) {
   const groupByType = _.groupBy(entries, 'climb.key_type');
   const multiEntries = _.map(groupByType, (arr, type) => `${type}: ${arr.length} ${arr.length > 1 ? 'climbs' : 'climb'}`)
 
-  //find most specific common area for multiple entries
+  //find most specific common area for multiple entries - areas are ordered least specific to most specific
   const areaArrays = entries.map(entry => entry.climb.area_array);
   const minLength = _.min(areaArrays.map(areas => areas.length))
 
@@ -22,6 +22,7 @@ export default function StatsLogEntry(props) {
     let i = 0;
     while (i <= minLength) {
       let first = null;
+      // found is looking for the first area that is not the same as areas get more specific
       let found = areaArrays.find(areas => {
         let area = areas[i];
         if (!first) {
